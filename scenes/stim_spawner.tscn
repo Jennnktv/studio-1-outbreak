@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cmfucgcusro5u"]
+
+[ext_resource type="Script" path="res://scripts/Stim/stim_spawner.gd" id="1_rqi3p"]
+
+[node name="StimSpawner" type="Node"]
+script = ExtResource("1_rqi3p")

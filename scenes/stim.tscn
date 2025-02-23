@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://d3576dtysd2rs"]
+
+[ext_resource type="Script" path="res://scripts/Stim/stim.gd" id="1_l8xrb"]
+[ext_resource type="Texture2D" uid="uid://c2vt1v2xtgcm2" path="res://assets/Stims/stim.jpg" id="1_uymov"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r4y0l"]
+radius = 22.0227
+
+[node name="Stim" type="Area2D"]
+script = ExtResource("1_l8xrb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_r4y0l")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.065, 0.065)
+texture = ExtResource("1_uymov")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,72 @@
+[gd_scene load_steps=5 format=3 uid="uid://xqv252resryr"]
+
+[ext_resource type="Script" path="res://scripts/About/about.gd" id="1_1qxtf"]
+[ext_resource type="Texture2D" uid="uid://i3hsc0uuxi4s" path="res://assets/About/bg.jpg" id="1_wi8ml"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_hpb72"]
+font_size = 41
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yxnbm"]
+bg_color = Color(0, 0.317647, 0.533333, 0.686275)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1qxtf")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_wi8ml")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -0.5
+offset_right = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "This game was made by:
+
+People"
+label_settings = SubResource("LabelSettings_hpb72")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+offset_left = 18.0
+offset_top = 12.0
+offset_right = 150.0
+offset_bottom = 82.0
+theme_override_font_sizes/font_size = 51
+theme_override_styles/focus = SubResource("StyleBoxFlat_yxnbm")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_yxnbm")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_yxnbm")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_yxnbm")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_yxnbm")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_yxnbm")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yxnbm")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_yxnbm")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yxnbm")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_yxnbm")
+theme_override_styles/normal = SubResource("StyleBoxFlat_yxnbm")
+text = "BACK"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
