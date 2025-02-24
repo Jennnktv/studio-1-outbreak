@@ -19,7 +19,7 @@ var target_value: float = 0.0
 @export var min_value: float = 0.0
 ## The minimum allowed value for `current_value` and `target_value`.
 
-@export var max_value: float = 1.0
+@export var max_value: float = -1.0
 ## The maximum allowed value for `current_value` and `target_value`.
 ## If set to -1, there is no upper limit.
 
