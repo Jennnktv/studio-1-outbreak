@@ -23,7 +23,9 @@ Score="*res://scripts/Score/score_controller.gd"
 [display]
 
 window/size/viewport_width=1280
-window/size/viewport_height=720
+window/size/viewport_height=800
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 
 [dotnet]
 
