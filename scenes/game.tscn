@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b6cjcbbwkvpbx"]
+[gd_scene load_steps=14 format=3 uid="uid://b6cjcbbwkvpbx"]
 
 [ext_resource type="Texture2D" uid="uid://esi25ief7o5s" path="res://assets/tiles/A2_Ground.png" id="1_51tcl"]
 [ext_resource type="Script" path="res://scripts/proc_gen.gd" id="1_tea36"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scripts/Gameplay/lighting.gd" id="5_eic6x"]
 [ext_resource type="Shader" path="res://scripts/Gameplay/lighting.gdshader" id="5_obf3g"]
 [ext_resource type="PackedScene" uid="uid://cmfucgcusro5u" path="res://scenes/stim_spawner.tscn" id="6_fq1t4"]
+[ext_resource type="PackedScene" uid="uid://xqmjrt744inq" path="res://scenes/HUD.tscn" id="6_hjpag"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_dggbg"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -1619,3 +1620,5 @@ offset_left = -1.0
 offset_top = 4.0
 offset_right = 4.0
 offset_bottom = 4.0
+
+[node name="HUD" parent="CanvasLayer" instance=ExtResource("6_hjpag")]
