@@ -1605,7 +1605,6 @@ tile_ids = Array[int]([0])
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Lighting" type="ColorRect" parent="CanvasLayer"]
-visible = false
 material = SubResource("ShaderMaterial_d85i7")
 anchors_preset = 15
 anchor_right = 1.0
