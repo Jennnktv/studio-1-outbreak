@@ -1,11 +1,15 @@
 extends CharacterBody2D
 
-# @onready var sprite: AnimatedSprite2D = $Sprite
+const GOLDEN_RATIO = 1.61803398875
+
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var active_value_moving: ActiveValue = $ActiveValueMoving
 
 enum State { IDLE, WALK }
 var current_state: State = State.IDLE
 var target_velocity: Vector2 = Vector2.ZERO
 
+@export var animation_speed: float = 3.0
 @export var max_speed: float = 600.0
 @export var acceleration: float = 2000.0
 @export var friction: float = 2500.0
@@ -17,6 +21,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	handle_state(delta)
 	move_and_slide()
+	animation_player.speed_scale = GOLDEN_RATIO * (acceleration / max_speed) * active_value_moving.current_value
 
 func handle_state(delta: float) -> void:
 	var input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -48,9 +53,11 @@ func transition_to(new_state: State) -> void:
 	# Enter new state
 	match new_state:
 		State.IDLE:
-			%AnimationPlayer.stop()
+			animation_player.stop()
+			active_value_moving.set_value(0.0)
 		State.WALK:
-			%AnimationPlayer.play("Walk")
+			animation_player.play("Walk")
+			active_value_moving.set_value(1.0)
 			update_rotation()
 	
 	current_state = new_state
@@ -58,24 +65,7 @@ func transition_to(new_state: State) -> void:
 func update_rotation() -> void:
 	if velocity.length() > 0.1:
 		# Primary directions
-		if velocity.x > 0:
-			rotation_degrees = 90  # Right
-		elif velocity.x < 0:
-			rotation_degrees = 270   # Left
-		elif velocity.y > 0:
-			rotation_degrees = 180    # Down
-		elif velocity.y < 0:
-			rotation_degrees = 0  # Up
-		
-		# Diagonal directions
-		if velocity.x > 0 && velocity.y < 0:
-			rotation_degrees = 45  # Right-Up
-		elif velocity.x < 0 && velocity.y < 0:
-			rotation_degrees = 315  # Left-Up
-		elif velocity.x > 0 && velocity.y > 0:
-			rotation_degrees = 135  # Right-Down
-		elif velocity.x < 0 && velocity.y > 0:
-			rotation_degrees = 225  # Left-Down
+		rotation = velocity.angle()
 	
 
 func on_stim_collected():
