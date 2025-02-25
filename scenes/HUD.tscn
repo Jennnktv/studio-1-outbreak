@@ -33,3 +33,4 @@ text = "HUMANS: 001"
 [node name="WIRE_SCORE" type="Node" parent="HUMANS"]
 script = ExtResource("1_5lv6q")
 template = "HUMANS: %s"
+score_type = 1
