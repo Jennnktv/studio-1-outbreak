@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://xqmjrt744inq"]
+
+[ext_resource type="Script" path="res://scripts/Score/wire_score_controller.gd" id="1_5lv6q"]
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="STIMS" type="Label" parent="."]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 638.0
+offset_right = 123.0
+offset_bottom = 661.0
+text = "STIMS: 001"
+
+[node name="WIRE_SCORE" type="Node" parent="STIMS"]
+script = ExtResource("1_5lv6q")
+template = "STIMS: %s"
+
+[node name="HUMANS" type="Label" parent="."]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 590.0
+offset_right = 123.0
+offset_bottom = 613.0
+text = "HUMANS: 001"
+
+[node name="WIRE_SCORE" type="Node" parent="HUMANS"]
+script = ExtResource("1_5lv6q")
+template = "HUMANS: %s"

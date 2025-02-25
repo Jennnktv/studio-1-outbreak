@@ -79,4 +79,4 @@ func update_rotation() -> void:
 	
 
 func on_stim_collected():
-	print("Stim collected")
+	Score.bump_stimulants()
