@@ -25,6 +25,7 @@ func Enter():
 	nav_comp_prop.is_infected = true
 	navAgent.max_speed = nav_comp_prop.infected_speed
 	character.get_node("Sprite").self_modulate = Color(1,0,0,1)
+	Score.bump_infected()
 	
 	process_move()
 
