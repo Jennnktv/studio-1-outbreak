@@ -45,6 +45,7 @@ tile_ids = Array[int]([0])
 [node name="Stims" type="Node2D" parent="."]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Lighting" type="ColorRect" parent="CanvasLayer"]
 visible = false
