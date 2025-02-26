@@ -1,0 +1,13 @@
+[gd_resource type="LabelSettings" load_steps=3 format=3 uid="uid://drdgpw2nc5klf"]
+
+[ext_resource type="FontFile" uid="uid://haqfj7h78j8s" path="res://assets/HUD/OXANIUM.ttf" id="1_qby6v"]
+
+[sub_resource type="FontVariation" id="FontVariation_smd5l"]
+base_font = ExtResource("1_qby6v")
+variation_opentype = {
+2003265652: 600
+}
+
+[resource]
+font = SubResource("FontVariation_smd5l")
+font_size = 24

@@ -1,36 +1,113 @@
-[gd_scene load_steps=2 format=3 uid="uid://xqmjrt744inq"]
+[gd_scene load_steps=7 format=3 uid="uid://xqmjrt744inq"]
 
 [ext_resource type="Script" path="res://scripts/Score/wire_score_controller.gd" id="1_5lv6q"]
+[ext_resource type="Script" path="res://scripts/hud.gd" id="1_p6nw1"]
+[ext_resource type="Texture2D" uid="uid://bgrcg41e1ljvt" path="res://assets/HUD/HUD_BG.png" id="2_ye848"]
+[ext_resource type="LabelSettings" uid="uid://drdgpw2nc5klf" path="res://assets/HUD/HUD_font_settings.tres" id="3_1elmo"]
+[ext_resource type="Texture2D" uid="uid://cq0opqwpc3068" path="res://assets/HUD/ICON_INJECTION.png" id="3_yekvq"]
+[ext_resource type="Texture2D" uid="uid://kb20vmm58msn" path="res://assets/HUD/ICON_VIRUS.png" id="4_blsmh"]
 
-[node name="HUD" type="Control"]
+[node name="HUD" type="Control" node_paths=PackedStringArray("injection_label", "infected_label", "injection_icon", "infected_icon")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_p6nw1")
+cooldown_time = 0.2
+injection_label = NodePath("BG/BOX/STIMS/STIMS")
+infected_label = NodePath("BG/BOX/INFECTEDS/HUMANS")
+injection_icon = NodePath("BG/BOX/STIMS/ICON")
+infected_icon = NodePath("BG/BOX/INFECTEDS/ICON")
+highlight_colors = {
+0: Color(0, 1, 0, 1),
+1: Color(1, 0, 1, 1)
+}
 
-[node name="STIMS" type="Label" parent="."]
-layout_mode = 0
-offset_left = 40.0
-offset_top = 638.0
-offset_right = 123.0
-offset_bottom = 661.0
-text = "STIMS: 001"
+[node name="BG" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -384.0
+offset_top = -79.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 0
+grow_vertical = 0
+pivot_offset = Vector2(182, 29)
+texture = ExtResource("2_ye848")
 
-[node name="WIRE_SCORE" type="Node" parent="STIMS"]
+[node name="BOX" type="HBoxContainer" parent="BG"]
+layout_mode = 2
+offset_top = 4.0
+offset_right = 364.0
+offset_bottom = 55.0
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="STIMS" type="HBoxContainer" parent="BG/BOX"]
+layout_mode = 2
+
+[node name="ICON" type="TextureRect" parent="BG/BOX/STIMS"]
+layout_mode = 2
+texture = ExtResource("3_yekvq")
+
+[node name="STIMS" type="Label" parent="BG/BOX/STIMS"]
+layout_mode = 2
+text = "001"
+label_settings = ExtResource("3_1elmo")
+
+[node name="WIRE_SCORE" type="Node" parent="BG/BOX/STIMS/STIMS"]
 script = ExtResource("1_5lv6q")
-template = "STIMS: %s"
+template = "%s"
 
-[node name="HUMANS" type="Label" parent="."]
-layout_mode = 0
-offset_left = 40.0
-offset_top = 590.0
-offset_right = 123.0
-offset_bottom = 613.0
-text = "HUMANS: 001"
+[node name="INFECTEDS" type="HBoxContainer" parent="BG/BOX"]
+layout_mode = 2
 
-[node name="WIRE_SCORE" type="Node" parent="HUMANS"]
+[node name="ICON" type="TextureRect" parent="BG/BOX/INFECTEDS"]
+layout_mode = 2
+texture = ExtResource("4_blsmh")
+
+[node name="HUMANS" type="Label" parent="BG/BOX/INFECTEDS"]
+layout_mode = 2
+text = "001"
+label_settings = ExtResource("3_1elmo")
+
+[node name="WIRE_SCORE" type="Node" parent="BG/BOX/INFECTEDS/HUMANS"]
 script = ExtResource("1_5lv6q")
-template = "HUMANS: %s"
+template = "%s"
 score_type = 1
+
+[node name="SCORE" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -182.0
+offset_top = 34.0
+offset_right = 182.0
+offset_bottom = 93.0
+grow_horizontal = 2
+texture = ExtResource("2_ye848")
+
+[node name="TOTAL_SCORE" type="Label" parent="SCORE"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "SCORE: 100"
+label_settings = ExtResource("3_1elmo")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WIRE_SCORE" type="Node" parent="SCORE/TOTAL_SCORE"]
+script = ExtResource("1_5lv6q")
+template = "SCORE: %s"
+score_type = 1
+show_total_score = true
