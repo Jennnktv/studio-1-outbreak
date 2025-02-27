@@ -1,11 +1,24 @@
 extends Node2D
 
+###########################################
+# Simple Map Gen - Creates a random map layout of a building such as school.
+# - main hall, cafe, gym, bathrooms, classrooms
+# - outlines corridors and corners
+
+# - emits map_gen signal when complete
+
+# NOTE: the rooms prob should handle random object placements
+###########################################
+#E3C
+
+
 @onready var rooms_container := $"../Room_Container"
 
 const ROOM_TYPES := {
 	"main_hall": {"scene": preload("res://scenes/rooms/main_hall_a.tscn"), "size": Vector2(60, 30)},
 	"class_room": {"scene": preload("res://scenes/rooms/class_room_a.tscn"), "size": Vector2(60, 30)},
-	"gym": {"scene": preload("res://scenes/rooms/gym_a.tscn"), "size": Vector2(60, 61)},
+	"bath_room": {"scene": preload("res://scenes/rooms/bath_room_a.tscn"), "size": Vector2(60, 30)},
+	"gym": {"scene": preload("res://scenes/rooms/gym_a.tscn"), "size": Vector2(60, 91)},
 	"cafeteria": {"scene": preload("res://scenes/rooms/cafeteria_a.tscn"), "size": Vector2(60, 30)}
 }
 
@@ -63,8 +76,24 @@ func generate_aligned_rooms():
 		#print("cafe placed at:", cafe_pos)
 	else:
 		print("Failed to place cafe")
+		
+		
+	var bath_room_data := ROOM_TYPES["bath_room"]
+	var bath_room_size = bath_room_data["size"] * spacing
+	var bath_room_rect := main_hall_rect
+	var bath_room_pos = find_valid_position(bath_room_rect, bath_room_size)
+	bath_room_rect = Rect2(bath_room_pos, bath_room_size)
+	
+	if bath_room_pos != Vector2.INF:
+		rooms.append(bath_room_rect)
+		spawn_room_instance(bath_room_rect, bath_room_data["scene"])
+		bath_room_rect.position = bath_room_pos
+		#print("cafe placed at:", bath_room_pos)
+	else:
+		print("Failed to place bath_room")
 	
 	var possible_room_positions = [main_hall_rect, cafe_rect]
+	var count = 0
 	for i in range(class_room_num):
 		var class_room_data = ROOM_TYPES["class_room"]
 		var class_room_size = class_room_data["size"] * spacing
@@ -78,8 +107,26 @@ func generate_aligned_rooms():
 			possible_room_positions.clear()
 			possible_room_positions.append(class_room_rect)
 			#print("class room placed at:", class_room_pos)
+			count = count + 1
 		else:
 			print("Failed to place class room")
+		
+		if count == class_room_num:
+			
+			var bath_room_data2 := ROOM_TYPES["bath_room"]
+			var bath_room_size2 = bath_room_data2["size"] * spacing
+			var bath_room_rect2 := Rect2(class_room_pos, class_room_size)
+			var bath_room_pos2 = find_valid_position(bath_room_rect2, bath_room_size2)
+			bath_room_rect2 = Rect2(bath_room_pos2, bath_room_size2)
+	
+			if bath_room_pos2 != Vector2.INF:
+				rooms.append(bath_room_rect2)
+				
+				spawn_room_instance(bath_room_rect2, bath_room_data2["scene"])
+				bath_room_rect2.position = bath_room_pos2
+				#print("cafe placed at:", bath_room_pos)
+			else:
+				print("Failed to place bath_room2")
 
 func find_valid_position(base_room: Rect2, room_size: Vector2) -> Vector2:
 	var directions = [
@@ -109,7 +156,6 @@ func is_room_valid(room: Rect2) -> bool:
 func spawn_room_instance(room: Rect2, scene: PackedScene):
 	var room_instance = scene.instantiate()
 	room_instance.global_position = room.position
-	#room_instance.rotation = rotation  # rotation
 	rooms_container.call_deferred("add_child", room_instance)
 
 func find_room_by_position(target_position: Vector2) -> Rect2:
@@ -164,6 +210,8 @@ func add_corridors():
 			extend_corner(tilemap, room_rect, "bottom_left")
 		if not adjacent_rooms["right"] and not adjacent_rooms["bottom"]:
 			extend_corner(tilemap, room_rect, "bottom_right")
+			
+	SignalBus.map_generated.emit()
 
 func extend_corner(tilemap: TileMapLayer, room_rect: Rect2, corner_type: String):
 	var top_left_coord = Rect2(-6, -6, corner_width, corner_height)
