@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="SanityConfiguration" load_steps=4 format=3 uid="uid://brfuoruqq2p51"]
+
+[ext_resource type="Script" path="res://scripts/Sanity/gameplay_cue_points_res.gd" id="1_0mt4l"]
+[ext_resource type="Script" path="res://scripts/Sanity/psychological_cue_point_res.gd" id="2_tqbnx"]
+[ext_resource type="Script" path="res://scripts/Sanity/sanity_configuration_res.gd" id="3_e0xnj"]
+
+[resource]
+script = ExtResource("3_e0xnj")
+sanity_deplete_rate = 0.05
+fury_deplete_time = 5.0
+stimulant_recharge_rate = 0.2
+psychological_cue_points = Array[ExtResource("2_tqbnx")]([])
+gameplay_cue_points = Array[ExtResource("1_0mt4l")]([])

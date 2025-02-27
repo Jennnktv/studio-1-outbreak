@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://xqmjrt744inq"]
 
-[ext_resource type="Script" path="res://scripts/Score/wire_score_controller.gd" id="1_5lv6q"]
+[ext_resource type="Script" uid="uid://b3qs7d6ncbx18" path="res://scripts/Score/wire_score_controller.gd" id="1_5lv6q"]
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1_p6nw1"]
 [ext_resource type="Texture2D" uid="uid://bgrcg41e1ljvt" path="res://assets/HUD/HUD_BG.png" id="2_ye848"]
 [ext_resource type="LabelSettings" uid="uid://drdgpw2nc5klf" path="res://assets/HUD/HUD_font_settings.tres" id="3_1elmo"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://clsmtvvu3tgia"]
 
-[ext_resource type="Script" path="res://scripts/sanity/sanity_bar.gd" id="1_lkndy"]
+[ext_resource type="Script" uid="uid://tgfqb6x83alq" path="res://scripts/Sanity/sanity_bar.gd" id="1_lkndy"]
 
 [node name="SanityBar" type="Control"]
 layout_mode = 3
