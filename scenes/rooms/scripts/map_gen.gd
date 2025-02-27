@@ -18,11 +18,11 @@ const ROOM_TYPES := {
 	"main_hall": {"scene": preload("res://scenes/rooms/main_hall_a.tscn"), "size": Vector2(60, 30)},
 	"class_room": {"scene": preload("res://scenes/rooms/class_room_a.tscn"), "size": Vector2(60, 30)},
 	"bath_room": {"scene": preload("res://scenes/rooms/bath_room_a.tscn"), "size": Vector2(60, 30)},
-	"gym": {"scene": preload("res://scenes/rooms/gym_a.tscn"), "size": Vector2(60, 91)},
+	"gym": {"scene": preload("res://scenes/rooms/gym_a.tscn"), "size": Vector2(60, 92)},
 	"cafeteria": {"scene": preload("res://scenes/rooms/cafeteria_a.tscn"), "size": Vector2(60, 30)}
 }
 
-@export var class_room_num := 6
+@export var class_room_num := 5
 var rooms := []
 @export var tile_size := 16
 @export var scale_factor := 4
@@ -33,6 +33,8 @@ var previous_direction := Vector2.RIGHT  # store previous direction
 const CORRIDOR_WIDTH := 6  # 6 tiles wide
 var corner_width = 6
 var corner_height = 6
+
+var gym_rect_compare := Rect2(0,0,0,0)
 
 func _ready():
 	generate_aligned_rooms()
@@ -54,6 +56,7 @@ func generate_aligned_rooms():
 	var gym_rect = main_hall_rect
 	var gym_pos = find_valid_position(gym_rect, gym_size)
 	gym_rect = Rect2(gym_pos, gym_size)
+	gym_rect_compare = gym_rect
 	
 	if gym_pos != Vector2.INF: # If a valid
 		rooms.append(gym_rect)
@@ -169,7 +172,7 @@ func add_corridors():
 	#print(rooms_container)
 	for room in rooms_container.get_children():
 		#print("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
-		#print("ROOM: ", room.name)
+		print("ROOM: ", room.name)
 		var tilemap := room.get_node("Nodes").get_node("floor") as TileMapLayer
 		
 		var room_rect = find_room_by_position(room.position)
@@ -183,15 +186,27 @@ func add_corridors():
 			"top_left": Vector2(-1,-1),
 			"top_right": Vector2(1, -1),
 			"bottom_left": Vector2(-1, 1),
-			"bottom_right": Vector2(1, 1)
+			"bottom_right": Vector2(1, 1),
+			"middle_left": Vector2(-1, 0.5),
+			"middle_right": Vector2(1, 0.5)
 		}
 	
 		var adjacent_rooms := {}
-		# check adjacent rooms
+
 		for dir_key in directions.keys():
 			var dir = directions[dir_key]
-			adjacent_rooms[dir_key] = check_adjacent(room_rect, dir)
 
+			# special case for middle-left and middle-right
+			if dir_key == "middle_left":
+				var middle_left_pos = room_rect.position + Vector2(-spacing, room_rect.size.y / 2)
+				adjacent_rooms[dir_key] = find_room_by_position(middle_left_pos)
+			elif dir_key == "middle_right":
+				var middle_right_pos = room_rect.position + Vector2(room_rect.size.x + spacing, room_rect.size.y / 2)
+				adjacent_rooms[dir_key] = find_room_by_position(middle_right_pos)
+			else:
+				adjacent_rooms[dir_key] = check_adjacent(room_rect, dir)
+				
+				
 		# corridors
 		if not adjacent_rooms["left"]:
 			extend_border(tilemap, room_rect, "left", room.name)
@@ -201,6 +216,11 @@ func add_corridors():
 			extend_border(tilemap, room_rect, "top" , room.name)
 		if not adjacent_rooms["bottom"]:
 			extend_border(tilemap, room_rect, "bottom" , room.name)
+		if not adjacent_rooms["middle_left"]:
+			extend_border(tilemap, room_rect, "middle_left", room.name)
+		if not adjacent_rooms["middle_right"]:
+			extend_border(tilemap, room_rect, "middle_right", room.name)
+
 		# corners
 		if not adjacent_rooms["left"] and not adjacent_rooms["top"]:
 			extend_corner(tilemap, room_rect, "top_left")
@@ -218,6 +238,10 @@ func extend_corner(tilemap: TileMapLayer, room_rect: Rect2, corner_type: String)
 	var top_right_coord = Rect2(room_rect.size.x / scale_factor / tile_size + 1, -6, corner_width, corner_height)
 	var bottom_left_coord = Rect2(-6, room_rect.size.y / scale_factor / tile_size + 1, corner_width, corner_height)
 	var bottom_right_coord = Rect2(room_rect.size.x / scale_factor / tile_size + 1, room_rect.size.y / scale_factor / tile_size + 1, corner_width, corner_height)
+	
+	if room_rect.size.y / scale_factor / tile_size > 91:
+		#print("Detected a ", name, " size: ", (room_rect.size / scale_factor / tile_size))
+		return
 	
 	if corner_type == "top_left":
 		#print("Corner: ", corner_type, " position: ", top_left_coord)
@@ -291,7 +315,11 @@ func extend_border(tilemap, room_rect: Rect2, direction: String, name: String):
 	
 	# detect diagonal rooms
 	var diagonals = detect_diagonal_rooms(room_rect, direction)
-	#print("DIAGONALS: ", diagonals)
+	#print("Diagonals found:", diagonals)
+	
+	if room_rect.size.y / scale_factor / tile_size > 91:
+		#print("Detected a ", name, " size: ", (room_rect.size / scale_factor / tile_size))
+		return
 	
 	if direction == "left":
 		var toprightstart = 0
@@ -302,11 +330,15 @@ func extend_border(tilemap, room_rect: Rect2, direction: String, name: String):
 				# do walls
 				if Vector2(-1, -1) in diagonals: # left side
 					toprightstart = corner_width
+					if gym_rect_compare.position == diagonals.get((Vector2(-1, -1))).position:
+						toprightstart = toprightstart - 6
 					#print(name, " left left side ", y + toprightstart)
 					if x_offset == -CORRIDOR_WIDTH:
 						tilemap.set_cell(Vector2i(room_start.x + x_offset - 1, y + toprightstart), 0, wall_tile)
 				elif Vector2(-1, 1) in diagonals: # right side
 					bottomrightstart = corner_width
+					if gym_rect_compare.position == diagonals.get((Vector2(-1, 1))).position:
+						bottomrightstart = bottomrightstart - 6
 					#print(name, " left right side ", y - bottomrightstart)
 					if x_offset == -CORRIDOR_WIDTH:
 						tilemap.set_cell(Vector2i(room_start.x + x_offset - 1, y - bottomrightstart), 0, wall_tile)
@@ -326,11 +358,15 @@ func extend_border(tilemap, room_rect: Rect2, direction: String, name: String):
 				# do walls
 				if Vector2(1, -1) in diagonals: # left side
 					toprightstart = corner_width
+					if gym_rect_compare.position == diagonals.get((Vector2(1, -1))).position:
+						toprightstart = toprightstart - 6
 					#print(name, " right left side ", y + toprightstart)
 					if x_offset == CORRIDOR_WIDTH:
 						tilemap.set_cell(Vector2i(room_end.x + x_offset + 1, y + toprightstart), 0, wall_tile)
 				elif Vector2(1, 1) in diagonals: # right side
 					bottomrightstart = corner_width
+					if gym_rect_compare.position == diagonals.get((Vector2(1, 1))).position:
+						bottomrightstart = bottomrightstart - 6
 					#print(name, " right right side ", y - bottomrightstart)
 					if x_offset == CORRIDOR_WIDTH:
 						tilemap.set_cell(Vector2i(room_end.x + x_offset + 1, y - bottomrightstart), 0, wall_tile)
@@ -350,11 +386,15 @@ func extend_border(tilemap, room_rect: Rect2, direction: String, name: String):
 				# do walls
 				if Vector2(-1, -1) in diagonals: # left side
 					leftstart = corner_width
+					if gym_rect_compare.position == diagonals.get((Vector2(-1, -1))).position:
+						leftstart = leftstart - 6
 					#print(name, " top left side ", x + leftstart)
 					if y_offset == -CORRIDOR_WIDTH:
 						tilemap.set_cell(Vector2i(x + leftstart, room_start.y + y_offset - 1), 0, wall_tile)
 				elif Vector2(1, -1) in diagonals: # right side
 					rightstart = corner_width
+					if gym_rect_compare.position == diagonals.get((Vector2(1, -1))).position:
+						rightstart = rightstart - 6
 					#print(name, " top right side ", x - rightstart)
 					if y_offset == -CORRIDOR_WIDTH:
 						tilemap.set_cell(Vector2i(x - rightstart, room_start.y + y_offset - 1), 0, wall_tile)
@@ -374,11 +414,15 @@ func extend_border(tilemap, room_rect: Rect2, direction: String, name: String):
 				# do walls
 				if Vector2(-1, 1) in diagonals: # left side
 					leftstart = corner_width
+					if gym_rect_compare.position == diagonals.get((Vector2(-1,1))).position:
+						leftstart = leftstart - 6
 					#print(name, " bottom left side ", x + leftstart)
 					if y_offset == CORRIDOR_WIDTH:
 						tilemap.set_cell(Vector2i(x + leftstart, room_end.y + y_offset + 1), 0, wall_tile)
 				elif Vector2(1, 1) in diagonals: # right side
 					rightstart = corner_width
+					if gym_rect_compare.position == diagonals.get((Vector2(1,1))).position:
+						rightstart = rightstart - 6
 					#print(name, " bottom right side ", x - rightstart)
 					if y_offset == CORRIDOR_WIDTH:
 						tilemap.set_cell(Vector2i(x - rightstart, room_end.y + y_offset + 1), 0, wall_tile)
@@ -405,9 +449,13 @@ func detect_diagonal_rooms(room_rect: Rect2, direction: String) -> Dictionary:
 	
 	var diagonals_found = {}
 	for offset in diagonal_offsets.get(direction, []):
+		# Calculate diagonal position
 		var check_pos = room_rect.position + (offset * (room_rect.size + Vector2(spacing, spacing)))
+		var check_rect = Rect2(check_pos, room_rect.size)
+		
+		# Find overlapping rooms
 		for room in rooms:
-			if room.position == check_pos:
+			if check_rect.intersects(room):
 				diagonals_found[offset] = room
-	
-	return diagonals_found  # detected diagonal rooms
+				
+	return diagonals_found
