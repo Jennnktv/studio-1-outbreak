@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b6cjcbbwkvpbx"]
+[gd_scene load_steps=11 format=3 uid="uid://b6cjcbbwkvpbx"]
 
 [ext_resource type="Script" path="res://scenes/rooms/scripts/map_gen.gd" id="1_8lgxu"]
 [ext_resource type="TileSet" uid="uid://c7xnbwnwwuua2" path="res://assets/tile_sets/tile_set.tres" id="2_adj8j"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://thfcs08isg5s" path="res://scripts/Gameplay/lighting.gd" id="5_eic6x"]
 [ext_resource type="Shader" uid="uid://bw53jf2x05a7m" path="res://scripts/Gameplay/lighting.gdshader" id="5_obf3g"]
 [ext_resource type="PackedScene" uid="uid://cmfucgcusro5u" path="res://scenes/stim_spawner.tscn" id="6_fq1t4"]
+[ext_resource type="PackedScene" uid="uid://xqmjrt744inq" path="res://scenes/HUD.tscn" id="6_hjpag"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d85i7"]
 shader = ExtResource("5_obf3g")
@@ -22,8 +23,10 @@ shader_parameter/darkness_alpha = 1.0
 
 [node name="Game" type="Node2D"]
 
-[node name="Map_Gen" type="Node2D" parent="."]
+[node name="Map_Gen" type="Node2D" parent="." node_paths=PackedStringArray("rooms_container", "stim_spawner")]
 script = ExtResource("1_8lgxu")
+rooms_container = NodePath("../Room_Container")
+stim_spawner = NodePath("../StimSpawner")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 scale = Vector2(4, 4)
@@ -40,10 +43,10 @@ script = ExtResource("4_iurvy")
 [node name="StimSpawner" parent="." node_paths=PackedStringArray("stim_container", "tile_map_layer") instance=ExtResource("6_fq1t4")]
 stim_container = NodePath("../Stims")
 tile_map_layer = NodePath("../TileMapLayer")
-stim_count = 5
-tile_ids = Array[int]([0])
+stim_count = 20
 
 [node name="Stims" type="Node2D" parent="."]
+z_index = 10
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -60,8 +63,10 @@ script = ExtResource("5_eic6x")
 
 [node name="SanityBar" parent="CanvasLayer" instance=ExtResource("4_h2il8")]
 offset_left = -1.0
-offset_top = 4.0
+offset_top = 762.0
 offset_right = 4.0
-offset_bottom = 4.0
+offset_bottom = 762.0
+
+[node name="HUD" parent="CanvasLayer" instance=ExtResource("6_hjpag")]
 
 [node name="Room_Container" type="Node2D" parent="."]

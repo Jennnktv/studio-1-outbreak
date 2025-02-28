@@ -12,7 +12,8 @@ extends Node2D
 #E3C
 
 
-@onready var rooms_container := $"../Room_Container"
+@export var rooms_container: Node2D
+@export var stim_spawner: StimSpanwer
 
 const ROOM_TYPES := {
 	"main_hall": {"scene": preload("res://scenes/rooms/main_hall_a.tscn"), "size": Vector2(60, 30)},
@@ -38,6 +39,8 @@ var gym_rect_compare := Rect2(0,0,0,0)
 func _ready():
 	generate_aligned_rooms()
 	call_deferred("add_corridors")
+	
+	get_tree().create_timer(0.5).timeout.connect(spawn_assets)
 
 func generate_aligned_rooms():
 	var current_pos := Vector2(to_world_vectori(Vector2i(10, 10))) # starting position
@@ -477,3 +480,9 @@ func to_world_vectori(value: Vector2i) -> Vector2i:
 	value.x = value.x * scale_factor * tile_size
 	value.y = value.y * scale_factor * tile_size
 	return value
+
+func spawn_assets():
+	for room in rooms_container.get_children():
+		var tile_map_layer = room.get_node("Nodes").get_node("floor") as TileMapLayer
+		stim_spawner.tile_map_layer = tile_map_layer
+		stim_spawner.spawn_stims()
