@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://xqmjrt744inq"]
 
-[ext_resource type="Script" path="res://scripts/Score/wire_score_controller.gd" id="1_5lv6q"]
-[ext_resource type="Script" path="res://scripts/hud.gd" id="1_p6nw1"]
+[ext_resource type="Script" uid="uid://b3qs7d6ncbx18" path="res://scripts/Score/wire_score_controller.gd" id="1_5lv6q"]
+[ext_resource type="Script" uid="uid://bafswgicx3vsc" path="res://scripts/hud.gd" id="1_p6nw1"]
 [ext_resource type="Texture2D" uid="uid://bgrcg41e1ljvt" path="res://assets/HUD/HUD_BG.png" id="2_ye848"]
 [ext_resource type="LabelSettings" uid="uid://drdgpw2nc5klf" path="res://assets/HUD/HUD_font_settings.tres" id="3_1elmo"]
 [ext_resource type="Texture2D" uid="uid://cq0opqwpc3068" path="res://assets/HUD/ICON_INJECTION.png" id="3_yekvq"]
@@ -33,9 +33,9 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -384.0
-offset_top = -79.0
+offset_top = -130.0
 offset_right = -20.0
-offset_bottom = -20.0
+offset_bottom = -71.0
 grow_horizontal = 0
 grow_vertical = 0
 pivot_offset = Vector2(182, 29)
@@ -84,14 +84,17 @@ score_type = 1
 
 [node name="SCORE" type="TextureRect" parent="."]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -182.0
-offset_top = 34.0
-offset_right = 182.0
-offset_bottom = 93.0
-grow_horizontal = 2
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -384.0
+offset_top = -67.0
+offset_right = -20.0
+offset_bottom = -8.0
+grow_horizontal = 0
+grow_vertical = 0
 texture = ExtResource("2_ye848")
 
 [node name="TOTAL_SCORE" type="Label" parent="SCORE"]
