@@ -26,7 +26,6 @@ const ROOM_TYPES := {
 var rooms := []
 @export var tile_size := 16
 @export var scale_factor := 4
-var spacing := tile_size * scale_factor
 var previous_direction := Vector2.RIGHT  # store previous direction
 @export var corridor_tile := Vector2i(9, 3)  # floor
 @export var wall_tile := Vector2i(2, 4)  # floor
@@ -41,18 +40,18 @@ func _ready():
 	call_deferred("add_corridors")
 
 func generate_aligned_rooms():
-	var current_pos := Vector2(10 * spacing, 10 * spacing) # starting position
+	var current_pos := Vector2(to_world_vectori(Vector2i(10, 10))) # starting position
 	
 	# place main hall
 	var main_hall_data := ROOM_TYPES["main_hall"]
-	var main_hall_size = main_hall_data["size"] * spacing
+	var main_hall_size = to_world_vectori(main_hall_data["size"])
 	
 	var main_hall_rect := Rect2(current_pos, main_hall_size)
 	rooms.append(main_hall_rect)
 	spawn_room_instance(main_hall_rect, main_hall_data["scene"])
 	
 	var gym_data := ROOM_TYPES["gym"]
-	var gym_size = gym_data["size"] * spacing
+	var gym_size = to_world_vectori(gym_data["size"])
 	var gym_rect = main_hall_rect
 	var gym_pos = find_valid_position(gym_rect, gym_size)
 	gym_rect = Rect2(gym_pos, gym_size)
@@ -67,7 +66,7 @@ func generate_aligned_rooms():
 		print("Failed to place Gym")
 	
 	var cafe_data := ROOM_TYPES["cafeteria"]
-	var cafe_size = cafe_data["size"] * spacing
+	var cafe_size = to_world_vectori(cafe_data["size"])
 	var cafe_rect := main_hall_rect
 	var cafe_pos = find_valid_position(cafe_rect, cafe_size)
 	cafe_rect = Rect2(cafe_pos, cafe_size)
@@ -82,7 +81,7 @@ func generate_aligned_rooms():
 		
 		
 	var bath_room_data := ROOM_TYPES["bath_room"]
-	var bath_room_size = bath_room_data["size"] * spacing
+	var bath_room_size = to_world_vectori(bath_room_data["size"])
 	var bath_room_rect := main_hall_rect
 	var bath_room_pos = find_valid_position(bath_room_rect, bath_room_size)
 	bath_room_rect = Rect2(bath_room_pos, bath_room_size)
@@ -99,7 +98,7 @@ func generate_aligned_rooms():
 	var count = 0
 	for i in range(class_room_num):
 		var class_room_data = ROOM_TYPES["class_room"]
-		var class_room_size = class_room_data["size"] * spacing
+		var class_room_size = to_world_vectori(class_room_data["size"])
 		var random_room = possible_room_positions[randi() % possible_room_positions.size()]
 		var class_room_pos = find_valid_position(random_room, class_room_size)
 		
@@ -117,7 +116,7 @@ func generate_aligned_rooms():
 		if count == class_room_num:
 			
 			var bath_room_data2 := ROOM_TYPES["bath_room"]
-			var bath_room_size2 = bath_room_data2["size"] * spacing
+			var bath_room_size2 = to_world_vectori(bath_room_data2["size"])
 			var bath_room_rect2 := Rect2(class_room_pos, class_room_size)
 			var bath_room_pos2 = find_valid_position(bath_room_rect2, bath_room_size2)
 			bath_room_rect2 = Rect2(bath_room_pos2, bath_room_size2)
@@ -142,7 +141,7 @@ func find_valid_position(base_room: Rect2, room_size: Vector2) -> Vector2:
 	directions.shuffle()  # randomize
 	
 	for dir in directions:
-		var new_pos = base_room.position + (dir * (base_room.size + Vector2(spacing, spacing)))
+		var new_pos = base_room.position + (dir * (base_room.size + Vector2((scale_factor * tile_size), (scale_factor * tile_size))))
 		var new_room = Rect2(new_pos, room_size)
 		
 		if is_room_valid(new_room):
@@ -165,14 +164,13 @@ func find_room_by_position(target_position: Vector2) -> Rect2:
 	for room in rooms:
 		if room.position == target_position:
 			return room  # Return the found Rect2
-	print("No room found at:", target_position)
+	#print("No room found at:", target_position)
 	return Rect2(0,0,0,0)
 
 func add_corridors():
-	#print(rooms_container)
 	for room in rooms_container.get_children():
 		#print("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
-		print("ROOM: ", room.name)
+		#print("ROOM: ", room.name)
 		var tilemap := room.get_node("Nodes").get_node("floor") as TileMapLayer
 		
 		var room_rect = find_room_by_position(room.position)
@@ -198,10 +196,10 @@ func add_corridors():
 
 			# special case for middle-left and middle-right
 			if dir_key == "middle_left":
-				var middle_left_pos = room_rect.position + Vector2(-spacing, room_rect.size.y / 2)
+				var middle_left_pos = room_rect.position + Vector2(-(scale_factor * tile_size), room_rect.size.y / 2)
 				adjacent_rooms[dir_key] = find_room_by_position(middle_left_pos)
 			elif dir_key == "middle_right":
-				var middle_right_pos = room_rect.position + Vector2(room_rect.size.x + spacing, room_rect.size.y / 2)
+				var middle_right_pos = room_rect.position + Vector2(room_rect.size.x + (scale_factor * tile_size), room_rect.size.y / 2)
 				adjacent_rooms[dir_key] = find_room_by_position(middle_right_pos)
 			else:
 				adjacent_rooms[dir_key] = check_adjacent(room_rect, dir)
@@ -234,12 +232,14 @@ func add_corridors():
 	SignalBus.map_generated.emit()
 
 func extend_corner(tilemap: TileMapLayer, room_rect: Rect2, corner_type: String):
-	var top_left_coord = Rect2(-6, -6, corner_width, corner_height)
-	var top_right_coord = Rect2(room_rect.size.x / scale_factor / tile_size + 1, -6, corner_width, corner_height)
-	var bottom_left_coord = Rect2(-6, room_rect.size.y / scale_factor / tile_size + 1, corner_width, corner_height)
-	var bottom_right_coord = Rect2(room_rect.size.x / scale_factor / tile_size + 1, room_rect.size.y / scale_factor / tile_size + 1, corner_width, corner_height)
 	
-	if room_rect.size.y / scale_factor / tile_size > 91:
+	# make sure we use tilemap coords...most all coords are in world including sizes
+	var top_left_coord = Rect2(-corner_width, -corner_height, corner_width, corner_height) # top left
+	var top_right_coord = Rect2(to_tilemap_int(room_rect.size.x) + 1, -corner_height, corner_width, corner_height)
+	var bottom_left_coord = Rect2(-corner_width, to_tilemap_int(room_rect.size.y) + 1, corner_width, corner_height)
+	var bottom_right_coord = Rect2(to_tilemap_int(room_rect.size.x) + 1, to_tilemap_int(room_rect.size.y) + 1, corner_width, corner_height)
+	
+	if to_tilemap_int(room_rect.size.y) > 91: # if we have a gym return
 		#print("Detected a ", name, " size: ", (room_rect.size / scale_factor / tile_size))
 		return
 	
@@ -250,6 +250,7 @@ func extend_corner(tilemap: TileMapLayer, room_rect: Rect2, corner_type: String)
 				var tile_position = Vector2i(top_left_coord.position.x + x, top_left_coord.position.y + y)
 				#print("Top_Left ", tile_position)
 				tilemap.set_cell(tile_position, 0, corridor_tile)
+				
 		var corner_start = Vector2i(top_left_coord.position.x - 1, top_left_coord.position.y - 1)
 		for x in range(corner_width + 1):
 			var tile_position = Vector2i(corner_start.x + x, corner_start.y)
@@ -264,6 +265,7 @@ func extend_corner(tilemap: TileMapLayer, room_rect: Rect2, corner_type: String)
 			for y in range(corner_height):
 				var tile_position = Vector2i(top_right_coord.position.x + x, top_right_coord.position.y + y)
 				tilemap.set_cell(tile_position, 0, corridor_tile)
+				
 		var corner_start = Vector2i(top_right_coord.position.x, top_right_coord.position.y - 1)
 		for x in range(corner_width + 1):
 			var tile_position = Vector2i(corner_start.x + x, corner_start.y)
@@ -301,7 +303,8 @@ func extend_corner(tilemap: TileMapLayer, room_rect: Rect2, corner_type: String)
 			tilemap.set_cell(tile_position, 0, wall_tile)
 
 func check_adjacent(room_rect: Rect2, dir: Vector2) -> bool:
-	var check_position = room_rect.position + (dir * Vector2(room_rect.size.x + spacing, room_rect.size.y + spacing))
+	# have to check in world coords
+	var check_position = room_rect.position + (dir * Vector2(room_rect.size.x + (scale_factor * tile_size), room_rect.size.y + (scale_factor * tile_size)))
 	var check_area = Rect2(check_position, room_rect.size)
 
 	for other_room in rooms:
@@ -310,14 +313,15 @@ func check_adjacent(room_rect: Rect2, dir: Vector2) -> bool:
 	return false
 
 func extend_border(tilemap, room_rect: Rect2, direction: String, name: String):
-	var room_start = tilemap.local_to_map(Vector2i(0, 0))
-	var room_end = tilemap.local_to_map(Vector2i(room_rect.size.x / scale_factor, room_rect.size.y / scale_factor))
+	# again we are in tilemap coords
+	var room_start = Vector2i(0, 0)
+	var room_end = Vector2i(to_tilemap_int(room_rect.size.x), to_tilemap_int(room_rect.size.y))
 	
-	# detect diagonal rooms
+	# detect diagonal rooms in world coords
 	var diagonals = detect_diagonal_rooms(room_rect, direction)
 	#print("Diagonals found:", diagonals)
 	
-	if room_rect.size.y / scale_factor / tile_size > 91:
+	if to_tilemap_int(room_rect.size.y) > 91: # if gym return
 		#print("Detected a ", name, " size: ", (room_rect.size / scale_factor / tile_size))
 		return
 	
@@ -423,7 +427,7 @@ func extend_border(tilemap, room_rect: Rect2, direction: String, name: String):
 					rightstart = corner_width
 					if gym_rect_compare.position == diagonals.get((Vector2(1,1))).position:
 						rightstart = rightstart - 6
-					#print(name, " bottom right side ", x - rightstart)
+					#print(name, " bottom right side ", x + rightstart)
 					if y_offset == CORRIDOR_WIDTH:
 						tilemap.set_cell(Vector2i(x - rightstart, room_end.y + y_offset + 1), 0, wall_tile)
 				else:
@@ -450,7 +454,7 @@ func detect_diagonal_rooms(room_rect: Rect2, direction: String) -> Dictionary:
 	var diagonals_found = {}
 	for offset in diagonal_offsets.get(direction, []):
 		# Calculate diagonal position
-		var check_pos = room_rect.position + (offset * (room_rect.size + Vector2(spacing, spacing)))
+		var check_pos = room_rect.position + (offset * (room_rect.size + Vector2((scale_factor * tile_size), (scale_factor * tile_size))))
 		var check_rect = Rect2(check_pos, room_rect.size)
 		
 		# Find overlapping rooms
@@ -459,3 +463,17 @@ func detect_diagonal_rooms(room_rect: Rect2, direction: String) -> Dictionary:
 				diagonals_found[offset] = room
 				
 	return diagonals_found
+
+func to_tilemap_int(value: int) -> int:
+	value = value / scale_factor / tile_size
+	return value
+	
+func to_tilemap_vectori(value: Vector2i) -> Vector2i:
+	value.x = value.x / scale_factor / tile_size
+	value.y = value.y / scale_factor / tile_size
+	return value
+
+func to_world_vectori(value: Vector2i) -> Vector2i:
+	value.x = value.x * scale_factor * tile_size
+	value.y = value.y * scale_factor * tile_size
+	return value
