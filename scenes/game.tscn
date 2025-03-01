@@ -39,7 +39,7 @@ wall_min_slide_angle = 0.0
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
 position_smoothing_enabled = true
-position_smoothing_speed = 100.0
+position_smoothing_speed = 10.0
 script = ExtResource("4_iurvy")
 
 [node name="StimSpawner" parent="." node_paths=PackedStringArray("stim_container", "tile_map_layer") instance=ExtResource("6_fq1t4")]
