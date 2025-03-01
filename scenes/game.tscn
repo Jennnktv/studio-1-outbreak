@@ -4,9 +4,9 @@
 [ext_resource type="TileSet" uid="uid://c7xnbwnwwuua2" path="res://assets/tile_sets/tile_set.tres" id="2_adj8j"]
 [ext_resource type="PackedScene" uid="uid://bbcwnuqmi3bwj" path="res://assets/Player/fox_rig/Fox.tscn" id="3_of7sw"]
 [ext_resource type="PackedScene" uid="uid://clsmtvvu3tgia" path="res://scenes/sanity_bar.tscn" id="4_h2il8"]
-[ext_resource type="Script" uid="uid://dc0kfh51tcd85" path="res://scripts/camera_2d.gd" id="4_iurvy"]
-[ext_resource type="Script" uid="uid://thfcs08isg5s" path="res://scripts/Gameplay/lighting.gd" id="5_eic6x"]
-[ext_resource type="Shader" uid="uid://bw53jf2x05a7m" path="res://scripts/Gameplay/lighting.gdshader" id="5_obf3g"]
+[ext_resource type="Script" path="res://scripts/camera_2d.gd" id="4_iurvy"]
+[ext_resource type="Script" path="res://scripts/Gameplay/lighting.gd" id="5_eic6x"]
+[ext_resource type="Shader" path="res://scripts/Gameplay/lighting.gdshader" id="5_obf3g"]
 [ext_resource type="PackedScene" uid="uid://cmfucgcusro5u" path="res://scenes/stim_spawner.tscn" id="6_fq1t4"]
 [ext_resource type="PackedScene" uid="uid://xqmjrt744inq" path="res://scenes/HUD.tscn" id="6_hjpag"]
 
@@ -35,9 +35,11 @@ tile_set = ExtResource("2_adj8j")
 [node name="CharacterBody2D" parent="." instance=ExtResource("3_of7sw")]
 position = Vector2(2752, 1680)
 scale = Vector2(0.1, 0.1)
+wall_min_slide_angle = 0.0
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
 position_smoothing_enabled = true
+position_smoothing_speed = 100.0
 script = ExtResource("4_iurvy")
 
 [node name="StimSpawner" parent="." node_paths=PackedStringArray("stim_container", "tile_map_layer") instance=ExtResource("6_fq1t4")]
