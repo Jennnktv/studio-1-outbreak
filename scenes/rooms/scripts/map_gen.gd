@@ -25,11 +25,11 @@ const ROOM_TYPES := {
 
 @export var class_room_num := 5
 var rooms := []
-@export var tile_size := 16
-@export var scale_factor := 4
+@export var tile_size := 128
+@export var scale_factor := 1
 var previous_direction := Vector2.RIGHT  # store previous direction
-@export var corridor_tile := Vector2i(9, 3)  # floor
-@export var wall_tile := Vector2i(2, 4)  # floor
+@export var corridor_tile := Vector2i(0, 0)  # floor
+@export var wall_tile := Vector2i(1, 0)  # floor
 const CORRIDOR_WIDTH := 6  # 6 tiles wide
 var corner_width = 6
 var corner_height = 6
