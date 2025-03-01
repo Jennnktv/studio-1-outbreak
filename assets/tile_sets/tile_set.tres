@@ -1,12 +1,6 @@
-[gd_resource type="TileSet" load_steps=4 format=3 uid="uid://c7xnbwnwwuua2"]
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://c7xnbwnwwuua2"]
 
 [ext_resource type="Texture2D" uid="uid://esi25ief7o5s" path="res://assets/tiles/A2_Ground.png" id="1_ogwp0"]
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_dggbg"]
-vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)])
-agent_radius = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g78l8"]
 texture = ExtResource("1_ogwp0")
@@ -225,7 +219,6 @@ texture = ExtResource("1_ogwp0")
 8:3/0 = 0
 8:3/0/custom_data_0 = true
 9:3/0 = 0
-9:3/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_dggbg")
 9:3/0/custom_data_0 = true
 10:3/0 = 0
 10:3/0/custom_data_0 = true
