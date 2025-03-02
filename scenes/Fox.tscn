@@ -1,8 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://bbcwnuqmi3bwj"]
+[gd_scene load_steps=15 format=3 uid="uid://72t6ff888bgy"]
 
 [ext_resource type="Script" path="res://scripts/Player/player.gd" id="1_psele"]
-[ext_resource type="Texture2D" uid="uid://ddsursga2jwqg" path="res://assets/Player/fox_rig/Chopped_Fox.png" id="1_q2hn3"]
+[ext_resource type="Texture2D" uid="uid://ditoipgej8lut" path="res://assets/Player/fox_rig/Head.png" id="2_jm15n"]
 [ext_resource type="Script" path="res://scripts/Common/active_value.gd" id="3_i817c"]
+[ext_resource type="Texture2D" uid="uid://2lr085s30kho" path="res://assets/Player/fox_rig/Body.png" id="3_w0jxy"]
+[ext_resource type="Texture2D" uid="uid://cenjekghykc0s" path="res://assets/Player/fox_rig/Left_Paw.png" id="4_u3w8p"]
+[ext_resource type="Texture2D" uid="uid://imy7a8jk4fvx" path="res://assets/Player/fox_rig/Right_Paw.png" id="5_aq2sr"]
+[ext_resource type="Texture2D" uid="uid://kewnttfkdno7" path="res://assets/Player/fox_rig/Back_Left_Paw.png" id="6_3cnh7"]
+[ext_resource type="Texture2D" uid="uid://dbmbqlanr3ye3" path="res://assets/Player/fox_rig/Back_Right_Paw.png" id="7_6fmxo"]
+[ext_resource type="Texture2D" uid="uid://cr0puoq6mjobu" path="res://assets/Player/fox_rig/Tail.png" id="8_5xmo3"]
 
 [sub_resource type="Animation" id="Animation_kc114"]
 length = 0.001
@@ -441,7 +447,7 @@ tracks/14/keys = {
 "times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(1, 0.442193), Vector2(1, -1.03875), Vector2(1, 0.442193), Vector2(1, 1.36048), Vector2(1, 0.442193)]
+"values": [Vector2(1, 1), Vector2(0.962, -1), Vector2(1, 0.442193), Vector2(1, 1), Vector2(1, 1)]
 }
 tracks/15/type = "value"
 tracks/15/imported = false
@@ -453,7 +459,7 @@ tracks/15/keys = {
 "times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(1, 0.441466), Vector2(1, 1.39951), Vector2(1, 0.441466), Vector2(1, -1.16093), Vector2(1, 0.441466)]
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(1, 0.441466), Vector2(1, -1), Vector2(1, 1)]
 }
 tracks/16/type = "value"
 tracks/16/imported = false
@@ -530,7 +536,7 @@ height = 1024.0
 radius = 232.0
 height = 622.0
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["light"]]
 position = Vector2(2.05945, -5.67462)
 motion_mode = 1
 script = ExtResource("1_psele")
@@ -556,9 +562,22 @@ auto_calculate_length_and_angle = false
 length = 310.919
 bone_angle = -90.0
 
+[node name="Head" type="Sprite2D" parent="Body2/Fox/Neck/Head"]
+z_index = 4
+position = Vector2(1.69176, -2.99451)
+rotation = 0.00606371
+texture = ExtResource("2_jm15n")
+offset = Vector2(0, 218.995)
+
 [node name="Body" type="Bone2D" parent="Body2/Fox/Neck"]
 position = Vector2(0, 210)
 rest = Transform2D(1, 0, 0, 1, 0, 210)
+
+[node name="Body" type="Sprite2D" parent="Body2/Fox/Neck/Body"]
+z_index = 3
+position = Vector2(0.83067, -212.1)
+rotation = 0.00606371
+texture = ExtResource("3_w0jxy")
 
 [node name="RightShoulder" type="Bone2D" parent="Body2/Fox/Neck/Body"]
 position = Vector2(119, -177)
@@ -566,6 +585,14 @@ rest = Transform2D(1, 0, 0, 1, 119, -177)
 auto_calculate_length_and_angle = false
 length = 120.0
 bone_angle = -60.0
+
+[node name="Right_Paw" type="Sprite2D" parent="Body2/Fox/Neck/Body/RightShoulder"]
+z_index = 1
+position = Vector2(0.438599, 7.02528)
+rotation = 0.0136989
+skew = -0.0110202
+texture = ExtResource("5_aq2sr")
+offset = Vector2(-30, -70)
 
 [node name="LeftShoulder" type="Bone2D" parent="Body2/Fox/Neck/Body"]
 position = Vector2(-119, -178)
@@ -575,13 +602,29 @@ auto_calculate_length_and_angle = false
 length = 120.0
 bone_angle = -116.757
 
+[node name="Left_Paw" type="Sprite2D" parent="Body2/Fox/Neck/Body/LeftShoulder"]
+z_index = 1
+position = Vector2(-0.587173, -6.00479)
+rotation = -0.881112
+skew = 0.649079
+texture = ExtResource("4_u3w8p")
+offset = Vector2(30, -65)
+
 [node name="LeftHaunch" type="Bone2D" parent="Body2/Fox/Neck/Body"]
 position = Vector2(-132, 103)
-rotation = 3.79722
+rotation = -2.48597
+scale = Vector2(1, 1)
 rest = Transform2D(1, 0, 0, 1, -132, 103)
 auto_calculate_length_and_angle = false
 length = 170.0
 bone_angle = -108.0
+
+[node name="Back_Left_Paw" type="Sprite2D" parent="Body2/Fox/Neck/Body/LeftHaunch"]
+z_index = 1
+position = Vector2(-108.149, 77.636)
+rotation = 2.49203
+texture = ExtResource("6_3cnh7")
+offset = Vector2(-65, 0)
 
 [node name="RightHaunch" type="Bone2D" parent="Body2/Fox/Neck/Body"]
 position = Vector2(128, 105)
@@ -590,6 +633,12 @@ rest = Transform2D(1, 0, 0, 1, 128, 105)
 auto_calculate_length_and_angle = false
 length = 170.0
 bone_angle = -72.0
+
+[node name="Back_Right_Paw" type="Sprite2D" parent="Body2/Fox/Neck/Body/RightHaunch"]
+z_index = 1
+position = Vector2(68.6752, -56.5992)
+rotation = -2.68161
+texture = ExtResource("7_6fmxo")
 
 [node name="Tail" type="Bone2D" parent="Body2/Fox/Neck/Body"]
 position = Vector2(0, 164)
@@ -612,79 +661,12 @@ auto_calculate_length_and_angle = false
 length = 200.0
 bone_angle = 90.0
 
-[node name="Head" type="Polygon2D" parent="Body2" groups=["light"]]
-z_index = 4
-position = Vector2(-2.05945, -273.325)
-offset = Vector2(-732.941, -465.675)
-texture = ExtResource("1_q2hn3")
-skeleton = NodePath("../Fox")
-polygon = PackedVector2Array(733.759, 576.683, 601.064, 529.234, 463.543, 512.346, 415.29, 466.506, 552.007, 378.042, 660.576, 223.633, 729.738, 77.2658, 810.964, 225.241, 906.665, 366.783, 1032.93, 472.135, 971.807, 544.515, 844.741, 542.102)
-uv = PackedVector2Array(733.759, 576.683, 601.064, 529.234, 463.543, 512.346, 415.29, 466.506, 552.007, 378.042, 660.576, 223.633, 729.738, 77.2658, 810.964, 225.241, 906.665, 366.783, 1032.93, 472.135, 971.807, 544.515, 844.741, 542.102)
-polygons = [PackedInt32Array(3, 4, 1, 2), PackedInt32Array(11, 8, 9, 10), PackedInt32Array(1, 0, 11, 8, 7, 5, 4), PackedInt32Array(5, 6, 7)]
-bones = ["Neck", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Neck/Head", PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1), "Neck/Body", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Neck/Body/RightShoulder", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Neck/Body/LeftShoulder", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Neck/Body/LeftHaunch", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Neck/Body/RightHaunch", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Neck/Body/Tail", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)]
-
-[node name="Body" type="Polygon2D" parent="Body2"]
-z_index = 3
-position = Vector2(-2.16321, -148.428)
-offset = Vector2(-730, -755)
-texture = ExtResource("1_q2hn3")
-skeleton = NodePath("../Fox")
-polygon = PackedVector2Array(723.838, 584.103, 599.888, 608.323, 572.818, 703.779, 530.077, 839.127, 538.625, 992.996, 608.436, 1142.59, 749.483, 1176.78, 896.228, 1098.42, 924.723, 973.05, 930.422, 833.428, 880.557, 698.08, 854.912, 595.5)
-uv = PackedVector2Array(723.838, 584.103, 599.888, 608.323, 572.818, 703.779, 530.077, 839.127, 538.625, 992.996, 608.436, 1142.59, 749.483, 1176.78, 896.228, 1098.42, 924.723, 973.05, 930.422, 833.428, 880.557, 698.08, 854.912, 595.5)
-bones = ["Neck", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Neck/Head", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Neck/Body", PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1), "Neck/Body/RightShoulder", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Neck/Body/LeftShoulder", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Neck/Body/LeftHaunch", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Neck/Body/RightHaunch", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Neck/Body/Tail", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)]
-
-[node name="Left_Paw" type="Polygon2D" parent="Body2"]
+[node name="Tail" type="Sprite2D" parent="Body2/Fox/Neck/Body/Tail"]
 z_index = 1
-position = Vector2(-105.163, -92.4281)
-offset = Vector2(-410, -883)
-texture = ExtResource("1_q2hn3")
-skeleton = NodePath("../Fox")
-polygon = PackedVector2Array(334.199, 722.69, 392.585, 730.474, 405.235, 788.86, 440.267, 841.408, 434.428, 903.686, 367.284, 918.283, 323.495, 880.332, 324.468, 844.327, 303.06, 812.215, 303.06, 760.641, 307.925, 730.474)
-uv = PackedVector2Array(334.199, 722.69, 392.585, 730.474, 405.235, 788.86, 440.267, 841.408, 434.428, 903.686, 367.284, 918.283, 323.495, 880.332, 324.468, 844.327, 303.06, 812.215, 303.06, 760.641, 307.925, 730.474)
-bones = ["Neck", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Neck/Head", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Neck/Body", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Neck/Body/RightShoulder", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Neck/Body/LeftShoulder", PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1), "Neck/Body/LeftHaunch", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Neck/Body/RightHaunch", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Neck/Body/Tail", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)]
-
-[node name="Right_Paw" type="Polygon2D" parent="Body2"]
-z_index = 1
-position = Vector2(117.941, -80.3254)
-offset = Vector2(-1111, -908)
-texture = ExtResource("1_q2hn3")
-skeleton = NodePath("../Fox")
-polygon = PackedVector2Array(1070.12, 883.121, 1093.12, 828.274, 1110.81, 803.504, 1113.46, 744.234, 1144.43, 731.849, 1195.74, 742.464, 1197.51, 798.196, 1197.51, 847.736, 1178.93, 868.967, 1180.7, 922.93, 1147.08, 943.277, 1089.58, 930.007)
-uv = PackedVector2Array(1070.12, 883.121, 1093.12, 828.274, 1110.81, 803.504, 1113.46, 744.234, 1144.43, 731.849, 1195.74, 742.464, 1197.51, 798.196, 1197.51, 847.736, 1178.93, 868.967, 1180.7, 922.93, 1147.08, 943.277, 1089.58, 930.007)
-bones = ["Neck", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Neck/Head", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Neck/Body", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Neck/Body/RightShoulder", PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1), "Neck/Body/LeftShoulder", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Neck/Body/LeftHaunch", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Neck/Body/RightHaunch", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Neck/Body/Tail", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)]
-
-[node name="Back_Left_Paw" type="Polygon2D" parent="Body2"]
-z_index = 1
-position = Vector2(-28.1632, 180.572)
-offset = Vector2(-519, -1205)
-texture = ExtResource("1_q2hn3")
-skeleton = NodePath("../Fox")
-polygon = PackedVector2Array(324.723, 1020.83, 363.258, 1004.77, 421.06, 1014.4, 428.553, 1055.08, 422.13, 1085.05, 478.862, 1104.32, 544.157, 1139.64, 559.143, 1207.08, 535.594, 1280.93, 446.75, 1286.29, 354.695, 1253.1, 306.526, 1191.02, 300.104, 1080.77)
-uv = PackedVector2Array(324.723, 1020.83, 363.258, 1004.77, 421.06, 1014.4, 428.553, 1055.08, 422.13, 1085.05, 478.862, 1104.32, 544.157, 1139.64, 559.143, 1207.08, 535.594, 1280.93, 446.75, 1286.29, 354.695, 1253.1, 306.526, 1191.02, 300.104, 1080.77)
-polygons = [PackedInt32Array(4, 10, 11, 12, 0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7, 8, 9, 10)]
-bones = ["Neck", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Neck/Head", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Neck/Body", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Neck/Body/RightShoulder", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Neck/Body/LeftShoulder", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Neck/Body/LeftHaunch", PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1), "Neck/Body/RightHaunch", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Neck/Body/Tail", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)]
-
-[node name="Back_Right_Paw" type="Polygon2D" parent="Body2"]
-z_index = 1
-position = Vector2(43.8368, 153.572)
-offset = Vector2(-982, -1170)
-texture = ExtResource("1_q2hn3")
-skeleton = NodePath("../Fox")
-polygon = PackedVector2Array(1066.2, 1015.92, 1091.89, 991.298, 1137.92, 995.58, 1163.61, 1025.55, 1157.18, 1071.58, 1165.75, 1155.07, 1127.21, 1228.93, 1024.45, 1268.53, 939.891, 1241.77, 945.243, 1160.42, 979.496, 1082.28, 1057.64, 1073.72)
-uv = PackedVector2Array(1066.2, 1015.92, 1091.89, 991.298, 1137.92, 995.58, 1163.61, 1025.55, 1157.18, 1071.58, 1165.75, 1155.07, 1127.21, 1228.93, 1024.45, 1268.53, 939.891, 1241.77, 945.243, 1160.42, 979.496, 1082.28, 1057.64, 1073.72)
-polygons = [PackedInt32Array(11, 0, 1, 2, 3, 4, 5, 6), PackedInt32Array(11, 10, 9, 8, 7, 6)]
-bones = ["Neck", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Neck/Head", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Neck/Body", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Neck/Body/RightShoulder", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Neck/Body/LeftShoulder", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Neck/Body/LeftHaunch", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Neck/Body/RightHaunch", PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1), "Neck/Body/Tail", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)]
-
-[node name="Tail" type="Polygon2D" parent="Body2"]
-z_index = 1
-position = Vector2(-2.05945, 178.675)
-offset = Vector2(-731, -1246)
-texture = ExtResource("1_q2hn3")
-skeleton = NodePath("../Fox")
-polygon = PackedVector2Array(637.955, 1220.7, 741.959, 1187.93, 827.442, 1230.68, 790.4, 1311.88, 797.523, 1393.09, 835.99, 1504.22, 831.716, 1666.64, 791.825, 1820.51, 733.412, 1914.54, 666.45, 1826.21, 625.133, 1673.76, 616.585, 1517.04, 663.601, 1403.07, 670.724, 1306.19)
-uv = PackedVector2Array(637.955, 1220.7, 741.959, 1187.93, 827.442, 1230.68, 790.4, 1311.88, 797.523, 1393.09, 835.99, 1504.22, 831.716, 1666.64, 791.825, 1820.51, 733.412, 1914.54, 666.45, 1826.21, 625.133, 1673.76, 616.585, 1517.04, 663.601, 1403.07, 670.724, 1306.19)
-polygons = [PackedInt32Array(0, 1, 2, 3, 13), PackedInt32Array(13, 12, 4, 3), PackedInt32Array(12, 11, 5, 4), PackedInt32Array(11, 10, 6, 5), PackedInt32Array(10, 9, 7, 6), PackedInt32Array(9, 8, 7)]
-bones = ["Neck", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Neck/Head", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Neck/Body", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Neck/Body/RightShoulder", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Neck/Body/LeftShoulder", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Neck/Body/LeftHaunch", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Neck/Body/RightHaunch", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Neck/Body/Tail", PackedFloat32Array(1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1), "Neck/Body/Tail/Tail2", PackedFloat32Array(0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0), "Neck/Body/Tail/Tail2/Tail3", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0)]
+position = Vector2(-1.04902, -49.0028)
+rotation = 0.00606371
+texture = ExtResource("8_5xmo3")
+offset = Vector2(0, -387.68)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
