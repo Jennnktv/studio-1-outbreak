@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://72t6ff888bgy"]
+[gd_scene load_steps=15 format=3 uid="uid://bhp14ns7j14ak"]
 
 [ext_resource type="Script" path="res://scripts/Player/player.gd" id="1_psele"]
 [ext_resource type="Texture2D" uid="uid://ditoipgej8lut" path="res://assets/Player/fox_rig/Head.png" id="2_jm15n"]
@@ -612,8 +612,7 @@ offset = Vector2(30, -65)
 
 [node name="LeftHaunch" type="Bone2D" parent="Body2/Fox/Neck/Body"]
 position = Vector2(-132, 103)
-rotation = -2.48597
-scale = Vector2(1, 1)
+rotation = 3.79722
 rest = Transform2D(1, 0, 0, 1, -132, 103)
 auto_calculate_length_and_angle = false
 length = 170.0
