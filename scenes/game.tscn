@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://scripts/Gameplay/lighting.gd" id="5_eic6x"]
 [ext_resource type="Shader" path="res://scripts/Gameplay/lighting.gdshader" id="5_obf3g"]
 [ext_resource type="PackedScene" uid="uid://cmfucgcusro5u" path="res://scenes/stim_spawner.tscn" id="6_fq1t4"]
-[ext_resource type="PackedScene" path="res://scenes/HUD.tscn" id="6_hjpag"]
+[ext_resource type="PackedScene" uid="uid://xqmjrt744inq" path="res://scenes/HUD.tscn" id="6_hjpag"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d85i7"]
 shader = ExtResource("5_obf3g")
