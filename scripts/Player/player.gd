@@ -64,7 +64,6 @@ func transition_to(new_state: State) -> void:
 
 func update_rotation() -> void:
 	if velocity.length() > 0.1:
-		# Primary directions
 		rotation = velocity.angle()
 	
 
