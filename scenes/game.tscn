@@ -2,13 +2,13 @@
 
 [ext_resource type="Script" path="res://scenes/rooms/scripts/map_gen.gd" id="1_8lgxu"]
 [ext_resource type="TileSet" uid="uid://c7xnbwnwwuua2" path="res://assets/tile_sets/tile_set.tres" id="2_adj8j"]
-[ext_resource type="PackedScene" uid="uid://bhp14ns7j14ak" path="res://scenes/Fox.tscn" id="3_of7sw"]
+[ext_resource type="PackedScene" path="res://scenes/Fox.tscn" id="3_of7sw"]
 [ext_resource type="PackedScene" uid="uid://clsmtvvu3tgia" path="res://scenes/sanity_bar.tscn" id="4_h2il8"]
 [ext_resource type="Script" path="res://scripts/camera_2d.gd" id="4_iurvy"]
 [ext_resource type="Script" path="res://scripts/Gameplay/lighting.gd" id="5_eic6x"]
 [ext_resource type="Shader" path="res://scripts/Gameplay/lighting.gdshader" id="5_obf3g"]
 [ext_resource type="PackedScene" uid="uid://cmfucgcusro5u" path="res://scenes/stim_spawner.tscn" id="6_fq1t4"]
-[ext_resource type="PackedScene" path="res://scenes/HUD.tscn" id="6_hjpag"]
+[ext_resource type="PackedScene" uid="uid://xqmjrt744inq" path="res://scenes/HUD.tscn" id="6_hjpag"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d85i7"]
 shader = ExtResource("5_obf3g")

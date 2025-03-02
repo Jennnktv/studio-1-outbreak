@@ -21,7 +21,7 @@ func spawn_stims() -> void:
 		for marker: Node2D in tile_map_layer.get_children():
 			markers.append(marker.global_position)
 
-		print("markers: ", markers.size())
+		#print("markers: ", markers.size())
 
 		for i in range(stim_count, 0, -1,):
 			if markers.size() == 0:

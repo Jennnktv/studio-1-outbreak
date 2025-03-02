@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=4 uid="uid://b5csrl7sg472h"]
 
 [ext_resource type="Script" path="res://scenes/rooms/scripts/class_room_a.gd" id="1_7reg2"]
-[ext_resource type="TileSet" uid="uid://bcvsbrkf3l66i" path="res://assets/tile_sets/new_tile_set.tres" id="2_ubdgh"]
+[ext_resource type="TileSet" uid="uid://bgqv87yjxkjkv" path="res://assets/tile_sets/new_tile_set.tres" id="2_ubdgh"]
 [ext_resource type="Texture2D" uid="uid://dnoxsyn8lig16" path="res://scenes/rooms/room_object_assets/desk_1_test.png" id="3_5jgtf"]
 [ext_resource type="Texture2D" uid="uid://bndk4hpny7mr7" path="res://scenes/rooms/room_object_assets/chair_1_test.png" id="4_w6gy0"]
 
@@ -29,10 +29,16 @@ tile_map_data = PackedByteArray("AAABAAEAAAAAAAAAAAABAAIAAAAAAAAAAAABAAMAAAAAAAA
 tile_set = ExtResource("2_ubdgh")
 
 [node name="sitm_spawner_1" type="Marker2D" parent="Nodes/floor"]
-position = Vector2(224.25, 215.5)
+position = Vector2(1712, 3376)
 
 [node name="sitm_spawner_2" type="Marker2D" parent="Nodes/floor"]
-position = Vector2(738.75, 262.5)
+position = Vector2(1696, 464)
+
+[node name="sitm_spawner_3" type="Marker2D" parent="Nodes/floor"]
+position = Vector2(6256, 3352)
+
+[node name="sitm_spawner_4" type="Marker2D" parent="Nodes/floor"]
+position = Vector2(6232, 512)
 
 [node name="walls" type="TileMapLayer" parent="Nodes"]
 tile_map_data = PackedByteArray("AAAAAAAAAAABAAAAAAAAAAEAAAABAAAAAAAAAAIAAAABAAAAAAAAAAMAAAABAAAAAAAAAAQAAAABAAAAAAAAAAUAAAABAAAAAAAAAAYAAAABAAAAAAAAAAcAAAABAAAAAAAAAAgAAAABAAAAAAAAAAkAAAABAAAAAAAAAAoAAAABAAAAAAAAAAsAAAABAAAAAAAAAAwAAAABAAAAAAAAAA0AAAABAAAAAAAAAA4AAAABAAAAAAAAAA8AAAABAAAAAAAAABAAAAABAAAAAAAAABEAAAABAAAAAAAAABIAAAABAAAAAAAAABMAAAABAAAAAAAAABQAAAABAAAAAAAAABUAAAABAAAAAAAAABYAAAABAAAAAAAAABcAAAABAAAAAAAAABgAAAABAAAAAAAAABkAAAABAAAAAAAAABoAAAABAAAAAAAAABsAAAABAAAAAAAAABwAAAABAAAAAAAAAB0AAAABAAAAAAAAAB4AAAABAAAAAAABAB4AAAABAAAAAAACAB4AAAABAAAAAAADAB4AAAABAAAAAAAEAB4AAAABAAAAAAAFAB4AAAABAAAAAAAGAB4AAAABAAAAAAAHAB4AAAABAAAAAAAIAB4AAAABAAAAAAAJAB4AAAABAAAAAAAKAB4AAAABAAAAAAALAB4AAAABAAAAAAAMAB4AAAABAAAAAAANAB4AAAABAAAAAAAOAB4AAAABAAAAAAAPAB4AAAABAAAAAAAQAB4AAAABAAAAAAARAB4AAAABAAAAAAASAB4AAAABAAAAAAATAB4AAAABAAAAAAAUAB4AAAABAAAAAAAVAB4AAAABAAAAAAAWAB4AAAABAAAAAAAXAB4AAAABAAAAAAAYAB4AAAABAAAAAAAZAB4AAAABAAAAAAABAAAAAAABAAAAAAACAAAAAAABAAAAAAADAAAAAAABAAAAAAAEAAAAAAABAAAAAAAFAAAAAAABAAAAAAAGAAAAAAABAAAAAAAHAAAAAAABAAAAAAAIAAAAAAABAAAAAAAJAAAAAAABAAAAAAAKAAAAAAABAAAAAAALAAAAAAABAAAAAAAMAAAAAAABAAAAAAANAAAAAAABAAAAAAAOAAAAAAABAAAAAAAPAAAAAAABAAAAAAAQAAAAAAABAAAAAAARAAAAAAABAAAAAAASAAAAAAABAAAAAAATAAAAAAABAAAAAAAUAAAAAAABAAAAAAAVAAAAAAABAAAAAAAWAAAAAAABAAAAAAAXAAAAAAABAAAAAAAYAAAAAAABAAAAAAAZAAAAAAABAAAAAAAjAAAAAAABAAAAAAAkAAAAAAABAAAAAAAlAAAAAAABAAAAAAAmAAAAAAABAAAAAAAnAAAAAAABAAAAAAAoAAAAAAABAAAAAAApAAAAAAABAAAAAAAqAAAAAAABAAAAAAArAAAAAAABAAAAAAAsAAAAAAABAAAAAAAtAAAAAAABAAAAAAAuAAAAAAABAAAAAAAvAAAAAAABAAAAAAAwAAAAAAABAAAAAAAxAAAAAAABAAAAAAAyAAAAAAABAAAAAAAzAAAAAAABAAAAAAA0AAAAAAABAAAAAAA1AAAAAAABAAAAAAA2AAAAAAABAAAAAAA3AAAAAAABAAAAAAA4AAAAAAABAAAAAAA5AAAAAAABAAAAAAA6AAAAAAABAAAAAAA7AAAAAAABAAAAAAA7AB4AAAABAAAAAAA6AB4AAAABAAAAAAA5AB4AAAABAAAAAAA4AB4AAAABAAAAAAA3AB4AAAABAAAAAAA2AB4AAAABAAAAAAA1AB4AAAABAAAAAAA0AB4AAAABAAAAAAAzAB4AAAABAAAAAAAyAB4AAAABAAAAAAAxAB4AAAABAAAAAAAwAB4AAAABAAAAAAAvAB4AAAABAAAAAAAuAB4AAAABAAAAAAAtAB4AAAABAAAAAAAsAB4AAAABAAAAAAArAB4AAAABAAAAAAAqAB4AAAABAAAAAAApAB4AAAABAAAAAAAoAB4AAAABAAAAAAAnAB4AAAABAAAAAAAmAB4AAAABAAAAAAAlAB4AAAABAAAAAAAkAB4AAAABAAAAAAAjAB4AAAABAAAAAAA8AAAAAAABAAAAAAA8AAEAAAABAAAAAAA8AAIAAAABAAAAAAA8AAMAAAABAAAAAAA8AAQAAAABAAAAAAA8AAUAAAABAAAAAAA8AAYAAAABAAAAAAA8AAcAAAABAAAAAAA8AAgAAAABAAAAAAA8AAkAAAABAAAAAAA8AAoAAAABAAAAAAA8AAsAAAABAAAAAAA8AAwAAAABAAAAAAA8AA0AAAABAAAAAAA8AA4AAAABAAAAAAA8AA8AAAABAAAAAAA8ABAAAAABAAAAAAA8ABEAAAABAAAAAAA8ABIAAAABAAAAAAA8ABMAAAABAAAAAAA8ABQAAAABAAAAAAA8ABUAAAABAAAAAAA8ABYAAAABAAAAAAA8ABcAAAABAAAAAAA8ABgAAAABAAAAAAA8ABkAAAABAAAAAAA8ABoAAAABAAAAAAA8ABsAAAABAAAAAAA8ABwAAAABAAAAAAA8AB0AAAABAAAAAAA8AB4AAAABAAAAAAAiAAAAAAABAAAAAAAiAAEAAAABAAAAAAAiAAIAAAABAAAAAAAiAAMAAAABAAAAAAAiAAQAAAABAAAAAAAiAAUAAAABAAAAAAAiAAYAAAABAAAAAAAiAAcAAAABAAAAAAAiAAgAAAABAAAAAAAiAAkAAAABAAAAAAAiAAoAAAABAAAAAAAiAAsAAAABAAAAAAAiAAwAAAABAAAAAAAiAA0AAAABAAAAAAAiAA4AAAABAAAAAAAiAA8AAAABAAAAAAAiABAAAAABAAAAAAAiABEAAAABAAAAAAAiABIAAAABAAAAAAAiABMAAAABAAAAAAAiABQAAAABAAAAAAAiABUAAAABAAAAAAAiABYAAAABAAAAAAAiABcAAAAcAAYAAAAiABgAAAAcAAYAAAAiABkAAAAcAAYAAAAiABoAAAABAAAAAAAiABsAAAABAAAAAAAiABwAAAABAAAAAAAiAB0AAAABAAAAAAAiAB4AAAABAAAAAAAbAAAAAAABAAAAAAAbAAEAAAABAAAAAAAbAAIAAAABAAAAAAAbAAMAAAABAAAAAAAbAAQAAAABAAAAAAAbAAUAAAABAAAAAAAbAAYAAAABAAAAAAAbAAoAAAABAAAAAAAbAAsAAAABAAAAAAAbAAwAAAABAAAAAAAbAA0AAAABAAAAAAAbAA4AAAABAAAAAAAbAA8AAAABAAAAAAAbABAAAAABAAAAAAAbABEAAAABAAAAAAAbABIAAAABAAAAAAAbABMAAAABAAAAAAAbABQAAAABAAAAAAAbABUAAAABAAAAAAAbABYAAAABAAAAAAAbABcAAAABAAAAAAAbABgAAAABAAAAAAAbABkAAAABAAAAAAAbABoAAAABAAAAAAAbABsAAAABAAAAAAAbABwAAAABAAAAAAAbAB0AAAABAAAAAAAbAB4AAAABAAAAAAAaAB4AAAABAAAAAAAaAAAAAAABAAAAAAA=")
@@ -40,9 +46,10 @@ tile_set = ExtResource("2_ubdgh")
 
 [node name="left_room_objects" type="Node2D" parent="."]
 texture_filter = 1
+position = Vector2(1784, 1952)
 
 [node name="desk_1" type="StaticBody2D" parent="left_room_objects"]
-position = Vector2(768, 1104)
+position = Vector2(-960, -640)
 disable_mode = 1
 physics_material_override = SubResource("PhysicsMaterial_67ayt")
 
@@ -64,7 +71,7 @@ texture = ExtResource("4_w6gy0")
 shape = SubResource("RectangleShape2D_14c0n")
 
 [node name="desk_2" type="StaticBody2D" parent="left_room_objects"]
-position = Vector2(1400, 1096)
+position = Vector2(-328, -648)
 disable_mode = 1
 physics_material_override = SubResource("PhysicsMaterial_67ayt")
 
@@ -86,7 +93,7 @@ texture = ExtResource("4_w6gy0")
 shape = SubResource("RectangleShape2D_14c0n")
 
 [node name="desk_3" type="StaticBody2D" parent="left_room_objects"]
-position = Vector2(2040, 1096)
+position = Vector2(312, -648)
 disable_mode = 1
 physics_material_override = SubResource("PhysicsMaterial_67ayt")
 
@@ -108,7 +115,7 @@ texture = ExtResource("4_w6gy0")
 shape = SubResource("RectangleShape2D_14c0n")
 
 [node name="desk_4" type="StaticBody2D" parent="left_room_objects"]
-position = Vector2(2656, 1088)
+position = Vector2(928, -656)
 disable_mode = 1
 physics_material_override = SubResource("PhysicsMaterial_67ayt")
 
@@ -130,7 +137,7 @@ texture = ExtResource("4_w6gy0")
 shape = SubResource("RectangleShape2D_14c0n")
 
 [node name="desk_5" type="StaticBody2D" parent="left_room_objects"]
-position = Vector2(776, 2208)
+position = Vector2(-952, 464)
 disable_mode = 1
 physics_material_override = SubResource("PhysicsMaterial_67ayt")
 
@@ -152,7 +159,7 @@ texture = ExtResource("4_w6gy0")
 shape = SubResource("RectangleShape2D_14c0n")
 
 [node name="desk_6" type="StaticBody2D" parent="left_room_objects"]
-position = Vector2(1408, 2200)
+position = Vector2(-320, 456)
 disable_mode = 1
 physics_material_override = SubResource("PhysicsMaterial_67ayt")
 
@@ -174,7 +181,7 @@ texture = ExtResource("4_w6gy0")
 shape = SubResource("RectangleShape2D_14c0n")
 
 [node name="desk_7" type="StaticBody2D" parent="left_room_objects"]
-position = Vector2(2048, 2200)
+position = Vector2(320, 456)
 disable_mode = 1
 physics_material_override = SubResource("PhysicsMaterial_67ayt")
 
@@ -196,7 +203,7 @@ texture = ExtResource("4_w6gy0")
 shape = SubResource("RectangleShape2D_14c0n")
 
 [node name="desk_8" type="StaticBody2D" parent="left_room_objects"]
-position = Vector2(2664, 2192)
+position = Vector2(936, 448)
 disable_mode = 1
 physics_material_override = SubResource("PhysicsMaterial_67ayt")
 
@@ -219,10 +226,11 @@ shape = SubResource("RectangleShape2D_14c0n")
 
 [node name="right_room_objects" type="Node2D" parent="."]
 texture_filter = 1
-position = Vector2(4368, 8)
+position = Vector2(6216, 1960)
+rotation = 1.5708
 
 [node name="desk_1" type="StaticBody2D" parent="right_room_objects"]
-position = Vector2(768, 1104)
+position = Vector2(-976, -632)
 disable_mode = 1
 physics_material_override = SubResource("PhysicsMaterial_67ayt")
 
@@ -244,7 +252,7 @@ texture = ExtResource("4_w6gy0")
 shape = SubResource("RectangleShape2D_14c0n")
 
 [node name="desk_2" type="StaticBody2D" parent="right_room_objects"]
-position = Vector2(1400, 1096)
+position = Vector2(-344, -640)
 disable_mode = 1
 physics_material_override = SubResource("PhysicsMaterial_67ayt")
 
@@ -266,7 +274,7 @@ texture = ExtResource("4_w6gy0")
 shape = SubResource("RectangleShape2D_14c0n")
 
 [node name="desk_3" type="StaticBody2D" parent="right_room_objects"]
-position = Vector2(2040, 1096)
+position = Vector2(296, -640)
 disable_mode = 1
 physics_material_override = SubResource("PhysicsMaterial_67ayt")
 
@@ -288,7 +296,7 @@ texture = ExtResource("4_w6gy0")
 shape = SubResource("RectangleShape2D_14c0n")
 
 [node name="desk_4" type="StaticBody2D" parent="right_room_objects"]
-position = Vector2(2656, 1088)
+position = Vector2(912, -648)
 disable_mode = 1
 physics_material_override = SubResource("PhysicsMaterial_67ayt")
 
@@ -310,7 +318,7 @@ texture = ExtResource("4_w6gy0")
 shape = SubResource("RectangleShape2D_14c0n")
 
 [node name="desk_5" type="StaticBody2D" parent="right_room_objects"]
-position = Vector2(776, 2208)
+position = Vector2(-968, 472)
 disable_mode = 1
 physics_material_override = SubResource("PhysicsMaterial_67ayt")
 
@@ -332,7 +340,7 @@ texture = ExtResource("4_w6gy0")
 shape = SubResource("RectangleShape2D_14c0n")
 
 [node name="desk_6" type="StaticBody2D" parent="right_room_objects"]
-position = Vector2(1408, 2200)
+position = Vector2(-336, 464)
 disable_mode = 1
 physics_material_override = SubResource("PhysicsMaterial_67ayt")
 
@@ -354,7 +362,7 @@ texture = ExtResource("4_w6gy0")
 shape = SubResource("RectangleShape2D_14c0n")
 
 [node name="desk_7" type="StaticBody2D" parent="right_room_objects"]
-position = Vector2(2048, 2200)
+position = Vector2(304, 464)
 disable_mode = 1
 physics_material_override = SubResource("PhysicsMaterial_67ayt")
 
@@ -376,7 +384,7 @@ texture = ExtResource("4_w6gy0")
 shape = SubResource("RectangleShape2D_14c0n")
 
 [node name="desk_8" type="StaticBody2D" parent="right_room_objects"]
-position = Vector2(2664, 2192)
+position = Vector2(920, 456)
 disable_mode = 1
 physics_material_override = SubResource("PhysicsMaterial_67ayt")
 
