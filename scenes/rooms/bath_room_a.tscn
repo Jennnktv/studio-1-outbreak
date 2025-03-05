@@ -5,10 +5,12 @@
 
 [node name="bath_room_A" type="Node2D"]
 script = ExtResource("1_8kjo8")
+room_width = 60
+room_height = 30
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
-position = Vector2(3904, 1980)
-scale = Vector2(428.8, 237.2)
+position = Vector2(4056, 2076)
+scale = Vector2(495.2, 295.6)
 
 [node name="Nodes" type="Node2D" parent="."]
 
