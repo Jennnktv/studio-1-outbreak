@@ -612,7 +612,8 @@ offset = Vector2(30, -65)
 
 [node name="LeftHaunch" type="Bone2D" parent="Body2/Fox/Neck/Body"]
 position = Vector2(-132, 103)
-rotation = 3.79722
+rotation = -2.48597
+scale = Vector2(1, 1)
 rest = Transform2D(1, 0, 0, 1, -132, 103)
 auto_calculate_length_and_angle = false
 length = 170.0
