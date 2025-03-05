@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://b6cjcbbwkvpbx"]
+[gd_scene load_steps=11 format=3 uid="uid://b6cjcbbwkvpbx"]
 
 [ext_resource type="Script" path="res://scenes/rooms/scripts/map_gen.gd" id="1_8lgxu"]
-[ext_resource type="PackedScene" path="res://scenes/Fox.tscn" id="3_of7sw"]
+[ext_resource type="TileSet" uid="uid://c7xnbwnwwuua2" path="res://assets/tile_sets/tile_set.tres" id="2_adj8j"]
+[ext_resource type="PackedScene" uid="uid://bhp14ns7j14ak" path="res://scenes/Fox.tscn" id="3_of7sw"]
 [ext_resource type="PackedScene" uid="uid://clsmtvvu3tgia" path="res://scenes/sanity_bar.tscn" id="4_h2il8"]
 [ext_resource type="Script" path="res://scripts/camera_2d.gd" id="4_iurvy"]
 [ext_resource type="Script" path="res://scripts/Gameplay/lighting.gd" id="5_eic6x"]
@@ -26,7 +27,10 @@ shader_parameter/darkness_alpha = 1.0
 script = ExtResource("1_8lgxu")
 rooms_container = NodePath("../Room_Container")
 stim_spawner = NodePath("../StimSpawner")
-class_room_num = 5
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+scale = Vector2(4, 4)
+tile_set = ExtResource("2_adj8j")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("3_of7sw")]
 position = Vector2(2752, 1680)
@@ -40,7 +44,7 @@ script = ExtResource("4_iurvy")
 
 [node name="StimSpawner" parent="." node_paths=PackedStringArray("stim_container", "tile_map_layer") instance=ExtResource("6_fq1t4")]
 stim_container = NodePath("../Stims")
-tile_map_layer = NodePath("")
+tile_map_layer = NodePath("../TileMapLayer")
 stim_count = 20
 
 [node name="Stims" type="Node2D" parent="."]
@@ -60,6 +64,10 @@ color = Color(0, 0, 0, 1)
 script = ExtResource("5_eic6x")
 
 [node name="SanityBar" parent="CanvasLayer" instance=ExtResource("4_h2il8")]
+offset_left = -1.0
+offset_top = 762.0
+offset_right = 4.0
+offset_bottom = 762.0
 
 [node name="HUD" parent="CanvasLayer" instance=ExtResource("6_hjpag")]
 
