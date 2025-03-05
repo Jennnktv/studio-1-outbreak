@@ -1,6 +1,17 @@
-extends Node
+extends base_room
+class_name cafeteria_a
 
 @onready var visibleOnScreenEnabler2d := $VisibleOnScreenEnabler2D
+@export var room_width: int
+@export var room_height: int
+
+func _ready() -> void:
+	#print("Cafe_A ready and add to SignalBus.Map_Generated")
+	super._ready()
+	width = room_width
+	height = room_height
+	
+	call_deferred("gen_corridors")
 
 func _on_visible_on_screen_enabler_2d_screen_entered() -> void:
 	get_node("Nodes").show()
