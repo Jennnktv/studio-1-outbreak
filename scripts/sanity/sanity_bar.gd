@@ -4,9 +4,23 @@ extends Control
 @onready var fury_time: Timer = $FuryTime
 @onready var eye_sprite: AnimatedSprite2D = $MarginContainer/AnimatedSprite2D
 
-var sanity:float
-var sanity_loss = 0.05
+@export var loss_rate: float = 0.1
 
+var is_furious: bool = false
+
+var sanity_loss: float:
+	get:
+		return 0.0 if is_furious else loss_rate
+
+# Define ranges and corresponding frames [including min, excluding max]
+var sanity_frames = [
+	{"min": 0.0,  "max": 10.0,  "frame": 0},
+	{"min": 10.0, "max": 20.0,  "frame": 1},
+	{"min": 20.0, "max": 40.0,  "frame": 2},
+	{"min": 40.0, "max": 60.0,  "frame": 3},
+	{"min": 60.0, "max": 80.0,  "frame": 4},
+	{"min": 80.0, "max": 100.0, "frame": 5}
+]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -15,36 +29,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	sanity = sanity_bar.value
-	
-	SignalBus.current_stim.emit(sanity)
-	if sanity < 1:
-		is_dead()
-	
-	if sanity >= 1 and sanity < 10:
-		eye_sprite.frame = 0
-	
-	if sanity >= 10 and sanity < 20:
-		eye_sprite.frame = 1
-		
-	if sanity >= 20 and sanity < 40:
-		eye_sprite.frame = 2
-	
-	if sanity >= 40 and sanity < 60:
-		eye_sprite.frame = 3
-		
-	if sanity <= 50:
-		is_withdrawal()
-	
-	if sanity >= 60 and sanity < 80:
-		eye_sprite.frame = 4
-	
-	if sanity >= 80 and sanity <= 99:
-		eye_sprite.frame = 5
-	
-	if sanity > 99:
-		is_fury()
-		eye_sprite.frame = 6
+	SignalBus.current_stim.emit(sanity_bar.value)
 
 
 func is_withdrawal() -> void:
@@ -52,22 +37,42 @@ func is_withdrawal() -> void:
 
 
 func is_dead() -> void:
-	pass #Implement death
+	SignalBus.game_over.emit()
 
 
 func is_fury() -> void:
 	#Implement fury mode here
 	fury_time.start()
-	sanity_loss = 0.1
-
+	is_furious = true
 
 func on_stim_collected() -> void:
 	sanity_bar.value += 20
 
-
 func _on_sanity_loss_timeout() -> void:
 	sanity_bar.value -= sanity_loss
 
-
 func _on_fury_time_timeout() -> void:
-	sanity_loss = 0.05
+	is_furious = false
+
+func _on_progress_bar_value_changed(value: float) -> void:
+	# Godot handles automatic clamping to be in range of 0 ~ 100 defined in inspector
+	# check for the various things that happen when sanity reaches thresholds
+	# fury when sanity >= 100
+	# game over state when sanity <= 0
+	if value >= 100.0:
+		is_fury()
+		eye_sprite.frame = 6
+		return
+	elif value <= 0.0:
+		is_dead()
+		eye_sprite.frame = 0
+		return
+		
+	if value <= 50.0:
+		is_withdrawal()
+
+	# Find the appropriate sprite frame
+	for mapping in sanity_frames:
+		if value >= mapping["min"] and value < mapping["max"]:
+			eye_sprite.frame = mapping["frame"]
+			break
