@@ -31,8 +31,7 @@ func spawn_stims() -> void:
 			var _stim = STIM.instantiate()
 			_stim.global_position = cell_coords
 			stim_container.add_child(_stim)
-			# var _human = HUMAN.instantiate()
-			# _human.global_position = _stim.global_position
-			# stim_container.call_deferred("add_child", _human)
-			#print("stim added")
-				
+			
+			var _human = HUMAN.instantiate()
+			_human.global_position = _stim.global_position
+			stim_container.call_deferred("add_child", _human)
