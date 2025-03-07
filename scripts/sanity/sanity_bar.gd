@@ -4,7 +4,7 @@ extends Control
 @onready var fury_time: Timer = $FuryTime
 @onready var eye_sprite: AnimatedSprite2D = $MarginContainer/AnimatedSprite2D
 
-@export var loss_rate: float = 0.5
+@export var loss_rate: float = 0.05
 
 var is_furious: bool = false
 
