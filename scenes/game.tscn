@@ -10,7 +10,7 @@
 [ext_resource type="Shader" path="res://scripts/Gameplay/lighting.gdshader" id="5_obf3g"]
 [ext_resource type="PackedScene" uid="uid://cmfucgcusro5u" path="res://scenes/stim_spawner.tscn" id="6_fq1t4"]
 [ext_resource type="PackedScene" uid="uid://b0wnumt30cv6f" path="res://scenes/HUD.tscn" id="6_hjpag"]
-[ext_resource type="AudioStream" uid="uid://bgxp7gtf12m7d" path="res://assets/sfx/2 Mind's Eye Loop3.wav" id="11_w7vjl"]
+[ext_resource type="AudioStream" uid="uid://cx2gycs0ufsx8" path="res://assets/sfx/2 The Veil of Night Loop 3.wav" id="6_i3qie"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d85i7"]
 resource_local_to_scene = true
@@ -49,7 +49,7 @@ script = ExtResource("4_iurvy")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="CharacterBody2D/Camera2D"]
 scale = Vector2(10, 10)
-stream = ExtResource("11_w7vjl")
+stream = ExtResource("6_i3qie")
 volume_db = 6.0
 autoplay = true
 
