@@ -12,10 +12,11 @@
 [ext_resource type="PackedScene" uid="uid://b0wnumt30cv6f" path="res://scenes/HUD.tscn" id="6_hjpag"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d85i7"]
+resource_local_to_scene = true
 shader = ExtResource("5_obf3g")
 shader_parameter/lights = PackedVector2Array()
 shader_parameter/number_of_lights = 1
-shader_parameter/modulate_color = Color(0, 0, 0, 0)
+shader_parameter/modulate_color = Color(0.982343, 0.982342, 0.982342, 1)
 shader_parameter/band_radius = 100.0
 shader_parameter/band_strength = 0.3
 shader_parameter/black_point = Color(0, 0, 0, 0)
@@ -57,6 +58,7 @@ z_index = 10
 [node name="Lighting" type="ColorRect" parent="CanvasLayer"]
 visible = false
 material = SubResource("ShaderMaterial_d85i7")
+use_parent_material = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

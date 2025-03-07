@@ -4,7 +4,7 @@ extends Control
 @onready var fury_time: Timer = $FuryTime
 @onready var eye_sprite: AnimatedSprite2D = $MarginContainer/AnimatedSprite2D
 
-@export var loss_rate: float = 0.1
+@export var loss_rate: float = 0.5
 
 var is_furious: bool = false
 
@@ -26,15 +26,12 @@ var sanity_frames = [
 func _ready() -> void:
 	SignalBus.stim_collected.connect(on_stim_collected)
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	SignalBus.current_stim.emit(sanity_bar.value)
 
-
 func is_withdrawal() -> void:
 	pass #Implement effects here
-
 
 func is_dead() -> void:
 	SignalBus.game_over.emit()
