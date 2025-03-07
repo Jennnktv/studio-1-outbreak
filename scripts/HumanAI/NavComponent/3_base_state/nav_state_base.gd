@@ -46,24 +46,32 @@ func Exit():
 	pass
 
 func process_move():
-	# base move, two classes depend on it with same logic
-	# wait for navigationServer to be ready
+	
+	# Wait for NavigationServer to be ready
 	while NavigationServer2D.map_get_iteration_id(navAgent.get_navigation_map()) == 0:
 		await get_tree().physics_frame
-		
-	var attempts = 2
-	while attempts > 0:
-		await get_tree().physics_frame
-		# if we got a target lets set the nav target position
-		# Pick a random room center
-		var tile_target = nav_comp_prop.room_centers[randi() % nav_comp_prop.room_centers.size()]  
-		
-		if tile_target != Vector2.ZERO:
-			navAgent.target_position = tile_target
-			
-			#rotate_sprite_towards_target(tile_target)
-			return  
-		attempts -= 1
+
+	# Ensure there are valid room centers
+	if nav_comp_prop.room_centers.is_empty():
+		return
+
+	# Find the closest room center that is NOT the current position
+	var ai_position = character.global_position
+	var closest_room = null
+	var min_distance = INF  # Set initial distance to a large value
+
+	for room in nav_comp_prop.room_centers:
+		var dist = ai_position.distance_to(room)
+		if dist < min_distance and dist > 100.0:  # Avoid selecting current location
+			min_distance = dist
+			closest_room = room
+	
+	# If a valid target was found, move there
+	if closest_room:
+		navAgent.target_position = closest_room
+		print("Moving to:", closest_room)
+
+
 
 func Update(_delta: float):
 	if !character or !navAgent or !nav_comp_prop.player:
@@ -71,6 +79,9 @@ func Update(_delta: float):
 	
 	# check our distance, might want to add a cooldown to reduce calls
 	distance_to_player = character.global_position.distance_to(nav_comp_prop.player.global_position)
+	
+	if distance_to_player > 1000 and !nav_comp_prop.is_infected:
+		return
 	
 	#cycle our cooldowns and remove if 0, can make a pool to decrease object creation
 	nav_comp_prop.cycle_timer_cooldowns(_delta)
@@ -90,6 +101,9 @@ func Update(_delta: float):
 func Physics_Update(_delta: float):
 	if !character or !navAgent or !nav_comp_prop.player:
 		# something is null
+		return
+		
+	if distance_to_player > 1000 and !nav_comp_prop.is_infected:
 		return
 	
 	# check cooldowns so we dont get jitter

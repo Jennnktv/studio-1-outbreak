@@ -7,7 +7,7 @@ class_name nav_component_properties
 #E3C
 
 var room_centers: Array = []
-var tile_map: TileMapLayer
+#var tile_map: TileMapLayer
 
 @export_category("/////////////////////////////////////////")
 @export_group("Debug Path")

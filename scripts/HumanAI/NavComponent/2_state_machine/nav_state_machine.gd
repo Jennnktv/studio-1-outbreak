@@ -45,17 +45,24 @@ func _ready():
 		print("Couldnt find Player!")
 		return
 	
-	nav_comp_prop.room_centers = character.get_parent().get_parent().room_centers_converted
+	for room in character.get_parent().get_parent().get_node_or_null("Room_Container").get_children():
+		nav_comp_prop.room_centers.append(room.room_center)
+		if nav_comp_prop.room_centers == null:
+			print("Couldnt find Room Centers!")
+			return
 	#print("Room Centers ", nav_comp_prop.room_centers)
-	if nav_comp_prop.room_centers == null:
-		print("Couldnt find Room Centers!")
-		return
+			
+		#nav_comp_prop.tile_map = room.tile_map
+		#print("TileMap: ", nav_comp_prop.tile_map)
+		#if nav_comp_prop.tile_map == null:
+			#print("Couldnt find TileMap!")
+			#return
 	
-	nav_comp_prop.tile_map = character.get_parent().get_parent().get_node("TileMapLayer") as TileMapLayer
+	#nav_comp_prop.tile_map = character.get_parent().get_parent().get_node("TileMapLayer") as TileMapLayer
 	#print("TileMap: ", nav_comp_prop.tile_map)
-	if nav_comp_prop.tile_map == null:
-		print("Couldnt find TileMap!")
-		return
+	#if nav_comp_prop.tile_map == null:
+		#print("Couldnt find TileMap!")
+		#return
 	
 	# load the stim targets, this one is not used atm
 	#var targetList = self.get_parent().returnList() as Node

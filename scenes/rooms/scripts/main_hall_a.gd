@@ -5,6 +5,7 @@ class_name main_hall_a
 @export var room_width: int
 @export var room_height: int
 
+
 func _ready() -> void:
 	#print("Main_Hall_A ready and add to SignalBus.Map_Generated")
 	super._ready()
