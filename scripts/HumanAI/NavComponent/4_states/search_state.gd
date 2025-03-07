@@ -36,20 +36,31 @@ func process_move():
 		await get_tree().physics_frame
 	
 	# find the current room center
-	current_room_center = find_nearest_room_center(character.global_position, nav_comp_prop.room_centers)
-	if current_room_center == Vector2.ZERO:
-		Transitioned.emit(self, "infected_state")
-		return
+	# Find the closest room center that is NOT the current position
+	var ai_position = character.global_position
+	var closest_room = null
+	var min_distance = INF  # Set initial distance to a large value
+	var width = null
+	var height = null
+
+	for room in nav_comp_prop.room_centers:
+		var dist = ai_position.distance_to(room)
+		if dist < min_distance and dist > 100.0:  # Avoid selecting current location
+			min_distance = dist
+			closest_room = room
+			width = 60
+			height = 30
+	
 	
 	# generate search spots within the room
-	search_spots = generate_search_spots(current_room_center, Vector2(200, 200))  # Radius = 100, 3 spots
+	search_spots = generate_search_spots(closest_room, Vector2(width * 16, height * 16))  # Radius = 100, 3 spots
 	
 	# move to the first search spot
 	if search_spots.size() > 0:
 		navAgent.target_position = search_spots.pop_front()
 		is_searching = true
 	else:
-		navAgent.target_position = current_room_center
+		navAgent.target_position = closest_room
 		is_searching = false
 
 func Update(_delta: float):

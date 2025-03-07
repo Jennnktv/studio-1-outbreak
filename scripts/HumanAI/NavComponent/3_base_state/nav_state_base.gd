@@ -44,7 +44,7 @@ func Enter():
 func Exit():
 	# nothing for base atm
 	pass
-
+var last_position = null
 func process_move():
 	
 	# Wait for NavigationServer to be ready
@@ -61,6 +61,7 @@ func process_move():
 	var min_distance = INF  # Set initial distance to a large value
 
 	for room in nav_comp_prop.room_centers:
+		if last_position == room: continue
 		var dist = ai_position.distance_to(room)
 		if dist < min_distance and dist > 100.0:  # Avoid selecting current location
 			min_distance = dist
@@ -69,7 +70,8 @@ func process_move():
 	# If a valid target was found, move there
 	if closest_room:
 		navAgent.target_position = closest_room
-		print("Moving to:", closest_room)
+		last_position = closest_room
+		#print("Moving to:", closest_room, last_position)
 
 
 
@@ -80,7 +82,7 @@ func Update(_delta: float):
 	# check our distance, might want to add a cooldown to reduce calls
 	distance_to_player = character.global_position.distance_to(nav_comp_prop.player.global_position)
 	
-	if distance_to_player > 1000 and !nav_comp_prop.is_infected:
+	if distance_to_player > 1200 and !nav_comp_prop.is_infected:
 		return
 	
 	#cycle our cooldowns and remove if 0, can make a pool to decrease object creation
@@ -103,7 +105,7 @@ func Physics_Update(_delta: float):
 		# something is null
 		return
 		
-	if distance_to_player > 1000 and !nav_comp_prop.is_infected:
+	if distance_to_player > 1200 and !nav_comp_prop.is_infected:
 		return
 	
 	# check cooldowns so we dont get jitter
