@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b6cjcbbwkvpbx"]
+[gd_scene load_steps=13 format=3 uid="uid://b6cjcbbwkvpbx"]
 
 [ext_resource type="Script" path="res://scripts/GameState/game_state.gd" id="1_3sq14"]
 [ext_resource type="Script" path="res://scenes/rooms/scripts/map_gen.gd" id="1_8lgxu"]
@@ -10,6 +10,7 @@
 [ext_resource type="Shader" path="res://scripts/Gameplay/lighting.gdshader" id="5_obf3g"]
 [ext_resource type="PackedScene" uid="uid://cmfucgcusro5u" path="res://scenes/stim_spawner.tscn" id="6_fq1t4"]
 [ext_resource type="PackedScene" uid="uid://b0wnumt30cv6f" path="res://scenes/HUD.tscn" id="6_hjpag"]
+[ext_resource type="AudioStream" uid="uid://bgxp7gtf12m7d" path="res://assets/sfx/2 Mind's Eye Loop3.wav" id="11_w7vjl"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d85i7"]
 resource_local_to_scene = true
@@ -45,6 +46,12 @@ wall_min_slide_angle = 0.0
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 script = ExtResource("4_iurvy")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="CharacterBody2D/Camera2D"]
+scale = Vector2(10, 10)
+stream = ExtResource("11_w7vjl")
+volume_db = 6.0
+autoplay = true
 
 [node name="StimSpawner" parent="." node_paths=PackedStringArray("stim_container", "tile_map_layer") instance=ExtResource("6_fq1t4")]
 stim_container = NodePath("../Stims")
