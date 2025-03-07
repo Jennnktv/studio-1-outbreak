@@ -1,9 +1,9 @@
 class_name Lighting extends ColorRect
 
-const base_band_radius:float = 100
-var band_radius:float = 100
-const base_light_radius:float = 256
-var zoom_radius:float = 256
+const base_band_radius:float = 125
+var band_radius:float = 125
+const base_light_radius:float = 300
+var zoom_radius:float = 300
 
 func _ready() -> void:
 	show()
@@ -32,8 +32,8 @@ func _update_light_radius(target_radius:float) -> void:
 	var current_light_radius = material.get_shader_parameter("light_radius")
 	var current_band_radius = material.get_shader_parameter("band_radius")
 	
-	_animate_parameter("light_radius", current_light_radius, target_radius)
-	_animate_parameter("band_radius", current_band_radius, target_radius)
+	_animate_parameter("light_radius", current_light_radius, (target_radius / 100 * base_light_radius))
+	_animate_parameter("band_radius", current_band_radius, (target_radius / 100 * base_band_radius))
 
 func _animate_parameter(parameter_name: String, from_value: float = 0.0, to_value: float = 0.0) -> void:
 	var tween = _create_custom_tween()

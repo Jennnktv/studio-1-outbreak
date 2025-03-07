@@ -224,19 +224,19 @@ func place_gym():
 			room_to_edit = other.get_node("Nodes").get_node("floor") as TileMapLayer
 			
 			# now that we have both tilemaps, let's print them to confirm
-			print("Gym TileMap:", gym_tilemap)
-			print("Other Room TileMap:", room_to_edit)
+			#print("Gym TileMap:", gym_tilemap)
+			#print("Other Room TileMap:", room_to_edit)
 			
 			# now connect the centers
 			var gym_center = gym_pos + Vector2(60, 92) / 2
 			var other_center = other_room.position + Vector2(60, 30) / 2
 			
-			print("Centers: gym: ", gym_center, " other: ", other_center, " ", other.name)
+			#print("Centers: gym: ", gym_center, " other: ", other_center, " ", other.name)
 			
 			# draw corridor between the centers
 			create_corridor(gym_center, other_center, gym_tilemap)
 
-			print("Gym placed at:", gym_pos)
+			#print("Gym placed at:", gym_pos)
 			return
 
 	print("Failed to place Gym. Checked positions:", directions)

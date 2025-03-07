@@ -11,6 +11,7 @@
 script = ExtResource("1_f3yoc")
 infected_transition_time = 1.0
 infected_speed = 225.0
+flee_speed = 375.0
 flee_distance_min = 320.0
 flee_distance_max = 1500.0
 escape_radius = 125.0

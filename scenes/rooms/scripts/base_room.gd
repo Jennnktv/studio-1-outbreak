@@ -30,7 +30,7 @@ func _ready() -> void:
 	room_center.x = self.global_position.x + width / 2 * tile_size
 	room_center.y = self.global_position.y + height / 2 * tile_size
 	
-	print(name, " Non Center: ", self.global_position, " Room Center: ", room_center)
+	#print(name, " Non Center: ", self.global_position, " Room Center: ", room_center)
 
 func gen_corridors():
 	if name == "gym_a": 
