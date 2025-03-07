@@ -63,7 +63,7 @@ func gen_corridors():
 
 		# modify top walls and floors
 		for x in range(top_start.x, top_end.x + 1):
-			tilemap.set_cell(Vector2i(x, -6), 0, Vector2i(1, 0))
+			tilemap.set_cell(Vector2i(x, -6), 1, Vector2i(1, 1))
 		
 		for x in range(top_start.x, top_end.x + 1):
 			for y in range(-5, 0):
@@ -97,7 +97,7 @@ func gen_corridors():
 
 		# modify bottom walls and floors
 		for x in range(bottom_start.x, bottom_end.x + 1):
-			tilemap.set_cell(Vector2i(x, height + 6), 0, Vector2i(1, 0))
+			tilemap.set_cell(Vector2i(x, height + 6), 1, Vector2i(1, 1))
 		for x in range(bottom_start.x, bottom_end.x + 1):
 			for y in range(height + 1, height + 6):
 				tilemap.set_cell(Vector2i(x, y), 0, Vector2i(0, 0))
@@ -127,7 +127,7 @@ func gen_corridors():
 
 		# left walls and floors
 		for y in range(left_start.y, left_end.y + 1):
-			tilemap.set_cell(Vector2i(-6, y), 0, Vector2i(1, 0))
+			tilemap.set_cell(Vector2i(-6, y), 1, Vector2i(1, 1))
 		for y in range(left_start.y, left_end.y + 1):
 			for x in range(-5, 0):
 				tilemap.set_cell(Vector2i(x, y), 0, Vector2i(0, 0))
@@ -157,7 +157,7 @@ func gen_corridors():
 
 		# right walls and floors
 		for y in range(right_start.y, right_end.y + 1):
-			tilemap.set_cell(Vector2i(width + 6, y), 0, Vector2i(1, 0))
+			tilemap.set_cell(Vector2i(width + 6, y), 1, Vector2i(1, 1))
 		for y in range(right_start.y, right_end.y + 1):
 			for x in range(width + 1, width + 6):
 				tilemap.set_cell(Vector2i(x, y), 0, Vector2i(0, 0))
@@ -167,23 +167,23 @@ func gen_corridors():
 	var data = tilemap.get_cell_tile_data(Vector2i(0,-3)) # top left corners
 	if data:
 		for i in 6:
-			tilemap.set_cell(Vector2i(-i, -6), 0, Vector2i(1,0))
+			tilemap.set_cell(Vector2i(-i, -6), 1, Vector2i(1, 1))
 
-	var data1 = tilemap.get_cell_tile_data(Vector2i(width, -3)) # top rright corners
+	var data1 = tilemap.get_cell_tile_data(Vector2i(width, -3)) # top right corners
 	if data1:
 		for i in 6:
-			tilemap.set_cell(Vector2i(width + i, -6), 0, Vector2i(1, 0))
+			tilemap.set_cell(Vector2i(width + i, -6), 1, Vector2i(1, 1))
 
 	var data2 = tilemap.get_cell_tile_data(Vector2i(0, height + 3)) # left bottom corners
 	#tilemap.set_cell(Vector2i(0, height + 6), 0, Vector2i(-1, -1))
 	if data2:
 		for i in 6:
-			tilemap.set_cell(Vector2i(-i, height + 6), 0, Vector2i(1, 0))
+			tilemap.set_cell(Vector2i(-i, height + 6), 1, Vector2i(1, 1))
 
 	var data3 = tilemap.get_cell_tile_data(Vector2i(width, height + 3)) # right bottom corners
 	if data3:
 		for i in 6:
-			tilemap.set_cell(Vector2i(width + i, height + 6), 0, Vector2i(1, 0))
+			tilemap.set_cell(Vector2i(width + i, height + 6), 1, Vector2i(1, 1))
 			
 	
 	var atlas_coords = tilemap.get_cell_atlas_coords(Vector2i(-1, height)) # left bottom

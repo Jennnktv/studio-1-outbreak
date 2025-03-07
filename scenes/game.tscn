@@ -30,6 +30,7 @@ script = ExtResource("1_3sq14")
 script = ExtResource("1_8lgxu")
 rooms_container = NodePath("../Room_Container")
 stim_spawner = NodePath("../StimSpawner")
+wall_tile = Vector2i(0, 0)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 scale = Vector2(4, 4)
@@ -56,6 +57,7 @@ z_index = 10
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Lighting" type="ColorRect" parent="CanvasLayer"]
+visible = false
 material = SubResource("ShaderMaterial_d85i7")
 use_parent_material = true
 anchors_preset = 15
