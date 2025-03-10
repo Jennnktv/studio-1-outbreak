@@ -2,6 +2,7 @@ class_name ScoreController extends Node
 
 #region enums / singleton / signals / constants
 
+const SAVE_FILE = "user://score.json"
 const SCORE_FIELD = "score"
 const TIMESTAMP_FIELD = "timestamp"
 
@@ -9,6 +10,9 @@ enum ScoreType {
 	STIMULANTS, 
 	INFECTED_HUMANS
 }
+
+signal loading()
+signal loaded()
 
 signal score_changed(score_type: ScoreType, score: int)
 signal score_changing(score_type: ScoreType, score: int)
@@ -26,6 +30,11 @@ signal score_changing(score_type: ScoreType, score: int)
 
 #region members
 
+var high_score: Dictionary = {
+	ScoreType.STIMULANTS: 0,
+	ScoreType.INFECTED_HUMANS: 0
+}
+
 var values: Dictionary = {
 	ScoreType.STIMULANTS: 0,
 	ScoreType.INFECTED_HUMANS: 0
@@ -36,7 +45,12 @@ var ledger: Dictionary = {
 	ScoreType.INFECTED_HUMANS: []
 }
 
+var _is_loaded = false
+
 #endregion
+
+func _ready() -> void:
+	_load()
 
 func push(score_type: ScoreType, score: int) -> void:
 	score_changing.emit(score_type, score)
@@ -49,13 +63,49 @@ func get_score(score_type: ScoreType) -> int:
 func get_total_score() -> int:
 	return total_score_types.reduce(func(acc, score_type): return acc + values[score_type], 0)
 
-func _append_score(score_type: ScoreType, score: int, timestamp: float) -> void:
-	var entry = { SCORE_FIELD: score, TIMESTAMP_FIELD: timestamp}
-	ledger[score_type].append(entry)
-	values[score_type] += score
+func get_total_high_score() -> int:
+	return total_score_types.reduce(func(acc, score_type): return acc + high_score[score_type], 0)
 
 func bump_stimulants():
 	push(ScoreType.STIMULANTS, 1)
 
 func bump_infected():
 	push(ScoreType.INFECTED_HUMANS, 1)
+
+func is_loaded() -> bool:
+	return _is_loaded
+
+func _append_score(score_type: ScoreType, score: int, timestamp: float) -> void:
+	var entry = { SCORE_FIELD: score, TIMESTAMP_FIELD: timestamp}
+	ledger[score_type].append(entry)
+	values[score_type] += score
+	# Update high score
+	if values[score_type] > high_score[score_type]:
+		high_score[score_type] = values[score_type]
+		_save()
+
+func _save() -> void:
+	var save_data = { "high_score": high_score }
+	var file = FileAccess.open(SAVE_FILE, FileAccess.WRITE)
+	file.store_string(JSON.stringify(save_data))
+	file.close()
+
+func _load() -> void:
+	loading.emit()
+	var file = FileAccess.open(SAVE_FILE, FileAccess.READ)
+	if file == null:
+		print("No save file found, playing for the first time")
+		_is_loaded = true
+		loaded.emit()
+		return
+	var save_data = JSON.parse_string(file.get_as_text())
+	print(save_data)
+
+	for score_type in total_score_types:
+		high_score[score_type] = save_data["high_score"][str(score_type)]
+		values[score_type] = 0
+		ledger[score_type] = []
+	
+	file.close()
+	_is_loaded = true
+	loaded.emit()

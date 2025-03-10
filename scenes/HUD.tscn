@@ -58,12 +58,11 @@ texture = ExtResource("3_yekvq")
 
 [node name="STIMS" type="Label" parent="BG/BOX/STIMS"]
 layout_mode = 2
-text = "001"
+text = "%s"
 label_settings = ExtResource("3_1elmo")
 
 [node name="WIRE_SCORE" type="Node" parent="BG/BOX/STIMS/STIMS"]
 script = ExtResource("1_5lv6q")
-template = "%s"
 
 [node name="INFECTEDS" type="HBoxContainer" parent="BG/BOX"]
 layout_mode = 2
@@ -74,12 +73,11 @@ texture = ExtResource("4_blsmh")
 
 [node name="HUMANS" type="Label" parent="BG/BOX/INFECTEDS"]
 layout_mode = 2
-text = "001"
+text = "%s"
 label_settings = ExtResource("3_1elmo")
 
 [node name="WIRE_SCORE" type="Node" parent="BG/BOX/INFECTEDS/HUMANS"]
 script = ExtResource("1_5lv6q")
-template = "%s"
 score_type = 1
 
 [node name="SCORE" type="TextureRect" parent="."]
@@ -104,13 +102,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "SCORE: 100"
+text = "SCORE: %s"
 label_settings = ExtResource("3_1elmo")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WIRE_SCORE" type="Node" parent="SCORE/TOTAL_SCORE"]
 script = ExtResource("1_5lv6q")
-template = "SCORE: %s"
 score_type = 1
 show_total_score = true
