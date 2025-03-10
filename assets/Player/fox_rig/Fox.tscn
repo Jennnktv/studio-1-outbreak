@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://cjcecgaqfymrh"]
 
-[ext_resource type="Script" path="res://scripts/Player/player.gd" id="1_psele"]
+[ext_resource type="Script" uid="uid://stq8li2iword" path="res://scripts/Player/player.gd" id="1_psele"]
 [ext_resource type="Texture2D" uid="uid://ddsursga2jwqg" path="res://assets/Player/fox_rig/Chopped_Fox.png" id="1_q2hn3"]
-[ext_resource type="Script" path="res://scripts/Common/active_value.gd" id="3_i817c"]
+[ext_resource type="Script" uid="uid://f0d1ns5a0r7q" path="res://scripts/Common/active_value.gd" id="3_i817c"]
 
 [sub_resource type="Animation" id="Animation_kc114"]
 length = 0.001
@@ -518,8 +518,8 @@ tracks/20/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dp82l"]
 _data = {
-"RESET": SubResource("Animation_kc114"),
-"Walk": SubResource("Animation_j1knu")
+&"RESET": SubResource("Animation_kc114"),
+&"Walk": SubResource("Animation_j1knu")
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gdmuh"]
