@@ -1,13 +1,13 @@
 [gd_scene load_steps=11 format=3 uid="uid://dv3bdkmetykja"]
 
-[ext_resource type="Script" uid="uid://bxegow3aouw5j" path="res://scripts/MainMenu/main_menu.gd" id="1_3fvjd"]
+[ext_resource type="Script" uid="uid://clbmbq1la24pb" path="res://scripts/MainMenu/main_menu.gd" id="1_3fvjd"]
 [ext_resource type="Texture2D" uid="uid://dlh7cra20budt" path="res://assets/MainMenu/main_menu_background.png" id="2_exr4e"]
 [ext_resource type="StyleBox" uid="uid://dlqm6afjwvkho" path="res://assets/MainMenu/Button.tres" id="3_o4735"]
 [ext_resource type="FontFile" uid="uid://haqfj7h78j8s" path="res://assets/HUD/OXANIUM.ttf" id="3_wnfeu"]
 [ext_resource type="AudioStream" uid="uid://bgxp7gtf12m7d" path="res://assets/sfx/2 Mind's Eye Loop3.wav" id="4_fdnjj"]
 [ext_resource type="Texture2D" uid="uid://bgrcg41e1ljvt" path="res://assets/HUD/HUD_BG.png" id="6_tbmy8"]
 [ext_resource type="LabelSettings" uid="uid://drdgpw2nc5klf" path="res://assets/HUD/HUD_font_settings.tres" id="7_jk1qb"]
-[ext_resource type="Script" uid="uid://yl14qjhjq4c6" path="res://scripts/Score/wire_score_controller.gd" id="8_5dd4i"]
+[ext_resource type="Script" uid="uid://cv8sm7nlyvjrl" path="res://scripts/Score/wire_score_controller.gd" id="8_5dd4i"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ajv18"]
 bg_color = Color(0, 0, 0, 0.701961)

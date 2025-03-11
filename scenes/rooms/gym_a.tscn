@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=4 uid="uid://d3ey1lia4jtrp"]
 
-[ext_resource type="Script" uid="uid://bp66hwtd1l0k2" path="res://scenes/rooms/scripts/gym_a.gd" id="1_7niq4"]
+[ext_resource type="Script" uid="uid://c4mir4atqfgy0" path="res://scenes/rooms/scripts/gym_a.gd" id="1_7niq4"]
 [ext_resource type="TileSet" uid="uid://bcvsbrkf3l66i" path="res://assets/tile_sets/new_tile_set.tres" id="2_c3i4i"]
 
 [node name="gym_a" type="Node2D"]
