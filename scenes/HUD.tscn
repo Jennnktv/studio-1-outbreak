@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://b0wnumt30cv6f"]
 
-[ext_resource type="Script" path="res://scripts/Score/wire_score_controller.gd" id="1_5lv6q"]
-[ext_resource type="Script" path="res://scripts/hud.gd" id="1_p6nw1"]
+[ext_resource type="Script" uid="uid://yl14qjhjq4c6" path="res://scripts/Score/wire_score_controller.gd" id="1_5lv6q"]
+[ext_resource type="Script" uid="uid://c7wa7gw5681q5" path="res://scripts/hud.gd" id="1_p6nw1"]
 [ext_resource type="Texture2D" uid="uid://bgrcg41e1ljvt" path="res://assets/HUD/HUD_BG.png" id="2_ye848"]
 [ext_resource type="LabelSettings" uid="uid://drdgpw2nc5klf" path="res://assets/HUD/HUD_font_settings.tres" id="3_1elmo"]
 [ext_resource type="Texture2D" uid="uid://cq0opqwpc3068" path="res://assets/HUD/ICON_INJECTION.png" id="3_yekvq"]
@@ -58,12 +58,11 @@ texture = ExtResource("3_yekvq")
 
 [node name="STIMS" type="Label" parent="BG/BOX/STIMS"]
 layout_mode = 2
-text = "001"
+text = "%s"
 label_settings = ExtResource("3_1elmo")
 
 [node name="WIRE_SCORE" type="Node" parent="BG/BOX/STIMS/STIMS"]
 script = ExtResource("1_5lv6q")
-template = "%s"
 
 [node name="INFECTEDS" type="HBoxContainer" parent="BG/BOX"]
 layout_mode = 2
@@ -74,12 +73,11 @@ texture = ExtResource("4_blsmh")
 
 [node name="HUMANS" type="Label" parent="BG/BOX/INFECTEDS"]
 layout_mode = 2
-text = "001"
+text = "%s"
 label_settings = ExtResource("3_1elmo")
 
 [node name="WIRE_SCORE" type="Node" parent="BG/BOX/INFECTEDS/HUMANS"]
 script = ExtResource("1_5lv6q")
-template = "%s"
 score_type = 1
 
 [node name="SCORE" type="TextureRect" parent="."]
@@ -104,13 +102,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "SCORE: 100"
+text = "SCORE: %s"
 label_settings = ExtResource("3_1elmo")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WIRE_SCORE" type="Node" parent="SCORE/TOTAL_SCORE"]
 script = ExtResource("1_5lv6q")
-template = "SCORE: %s"
 score_type = 1
 show_total_score = true

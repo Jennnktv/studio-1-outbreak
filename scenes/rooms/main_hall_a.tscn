@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=4 uid="uid://c4a8bpskpl1vg"]
 
-[ext_resource type="Script" path="res://scenes/rooms/scripts/main_hall_a.gd" id="1_3jk8s"]
+[ext_resource type="Script" uid="uid://qekhnb5huffi" path="res://scenes/rooms/scripts/main_hall_a.gd" id="1_3jk8s"]
 [ext_resource type="TileSet" uid="uid://bcvsbrkf3l66i" path="res://assets/tile_sets/new_tile_set.tres" id="2_kc3vw"]
 
 [node name="main_hall_a" type="Node2D"]
