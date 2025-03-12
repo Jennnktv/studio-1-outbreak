@@ -51,6 +51,9 @@ signal value_fell_below_min(value: float)
 
 #region public methods
 
+func _ready() -> void:
+	set_value(current_value)
+
 ## Sets the `target_value` to the provided value, clamped between `min_value` and `max_value`.
 func set_value(value: float) -> void:
 	target_value = clamp(value, min_value, max_value)

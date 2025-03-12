@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://clsmtvvu3tgia"]
 
-[ext_resource type="Script" uid="uid://xhporau1dowi" path="res://scripts/sanity/sanity_bar.gd" id="1_lkndy"]
+[ext_resource type="Script" uid="uid://bh6kperg4hpie" path="res://scripts/sanity/sanity_bar.gd" id="1_lkndy"]
 [ext_resource type="Texture2D" uid="uid://b0f2rcnmnwcyp" path="res://assets/Sanity/Sanity_Sprite1.png" id="2_8fcjq"]
 [ext_resource type="Texture2D" uid="uid://cbtg5ipme3abc" path="res://assets/Sanity/Sanity_Sprite2.png" id="3_6vglw"]
 [ext_resource type="Texture2D" uid="uid://cy2y8vgebymw8" path="res://assets/Sanity/Sanity_Sprite3.png" id="4_h2usm"]
@@ -93,14 +93,4 @@ position = Vector2(265, 95)
 scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_xepi7")
 
-[node name="SanityLoss" type="Timer" parent="."]
-wait_time = 0.05
-autostart = true
-
-[node name="FuryTime" type="Timer" parent="."]
-wait_time = 2.0
-one_shot = true
-
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/ProgressBar" to="." method="_on_progress_bar_value_changed"]
-[connection signal="timeout" from="SanityLoss" to="." method="_on_sanity_loss_timeout"]
-[connection signal="timeout" from="FuryTime" to="." method="_on_fury_time_timeout"]
