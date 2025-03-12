@@ -11,4 +11,4 @@ enum PsychologicalHorrorElements {
 	AUDIO_FOOTSTEPS      	   # Footstep sounds
 }
 
-@export var elements: Array[PsychologicalHorrorElements] = []
+@export var element: PsychologicalHorrorElements

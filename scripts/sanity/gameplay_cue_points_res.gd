@@ -6,4 +6,4 @@ enum GameplayImpact {
 	FORCED_ACTIONS    # Forced actions on the player
 }
 
-@export var elements: Array[GameplayImpact] = []
+@export var element: GameplayImpact
