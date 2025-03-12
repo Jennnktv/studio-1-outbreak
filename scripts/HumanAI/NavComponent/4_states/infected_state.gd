@@ -49,7 +49,8 @@ func Update(_delta: float):
 	if navAgent.is_target_reached():
 		#print("Infected.. Target Reached")
 		nav_comp_prop.start_cooldown("target_reached", nav_comp_prop.infected_transition_time)
-		Transitioned.emit(self, "search_state")
+		#Transitioned.emit(self, "search_state")
+		process_move()
 
 func Physics_Update(_delta: float):
 	super.Physics_Update(_delta)

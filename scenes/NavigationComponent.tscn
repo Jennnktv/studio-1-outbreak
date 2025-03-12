@@ -1,17 +1,18 @@
 [gd_scene load_steps=7 format=3 uid="uid://4k5oqrecloo4"]
 
-[ext_resource type="Script" path="res://scripts/HumanAI/NavComponent/1_nav_settings/nav_component_properties.gd" id="1_f3yoc"]
-[ext_resource type="Script" path="res://scripts/HumanAI/NavComponent/2_state_machine/nav_state_machine.gd" id="1_hun5f"]
-[ext_resource type="Script" path="res://scripts/HumanAI/NavComponent/4_states/wander_state.gd" id="3_oetll"]
-[ext_resource type="Script" path="res://scripts/HumanAI/NavComponent/4_states/infected_state.gd" id="4_8rj6o"]
-[ext_resource type="Script" path="res://scripts/HumanAI/NavComponent/4_states/flee_state.gd" id="5_oy3v8"]
-[ext_resource type="Script" path="res://scripts/HumanAI/NavComponent/4_states/search_state.gd" id="6_iqg41"]
+[ext_resource type="Script" uid="uid://f2uta527ehmv" path="res://scripts/HumanAI/NavComponent/1_nav_settings/nav_component_properties.gd" id="1_f3yoc"]
+[ext_resource type="Script" uid="uid://v45hiw2gj1n1" path="res://scripts/HumanAI/NavComponent/2_state_machine/nav_state_machine.gd" id="1_hun5f"]
+[ext_resource type="Script" uid="uid://dl480pd84ij67" path="res://scripts/HumanAI/NavComponent/4_states/wander_state.gd" id="3_oetll"]
+[ext_resource type="Script" uid="uid://b23apcjmeeuc3" path="res://scripts/HumanAI/NavComponent/4_states/infected_state.gd" id="4_8rj6o"]
+[ext_resource type="Script" uid="uid://bpecfm8ulcub2" path="res://scripts/HumanAI/NavComponent/4_states/flee_state.gd" id="5_oy3v8"]
+[ext_resource type="Script" uid="uid://dtd3imos40gxu" path="res://scripts/HumanAI/NavComponent/4_states/search_state.gd" id="6_iqg41"]
 
 [node name="NavComponent" type="Node2D"]
 script = ExtResource("1_f3yoc")
 infected_transition_time = 1.0
 infected_speed = 225.0
-flee_distance_min = 350.0
+flee_speed = 375.0
+flee_distance_min = 320.0
 flee_distance_max = 1500.0
 escape_radius = 125.0
 

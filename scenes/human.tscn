@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://4k5oqrecloo4" path="res://scenes/NavigationComponent.tscn" id="2_yvg70"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7v2o5"]
-radius = 34.0
-height = 130.0
+radius = 53.0
+height = 152.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2lecy"]
 atlas = ExtResource("2_g4skg")
@@ -111,7 +111,7 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="Human" type="CharacterBody2D"]
+[node name="Human" type="CharacterBody2D" groups=["human"]]
 rotation = -1.5708
 motion_mode = 1
 

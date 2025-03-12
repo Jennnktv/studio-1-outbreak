@@ -35,45 +35,7 @@ func Exit():
 	trapped = false
 
 func process_move():
-	# ensure navigationServer is ready
-	while NavigationServer2D.map_get_iteration_id(navAgent.get_navigation_map()) == 0:
-		await get_tree().physics_frame
-	
-	valid_paths.clear()
-	
-	# check all room centers
-	for room_center in nav_comp_prop.room_centers:
-		if last_path == room_center:
-			continue
-			
-		# skip if the player is on the path
-		if is_player_on_path(NavigationServer2D.map_get_path(navAgent.get_navigation_map(), character.global_position, room_center, 0), nav_comp_prop.player.global_position):
-			continue
-		
-		# add the valid path to choices
-		valid_paths.append(room_center)
-		
-	# pick a random valid path
-	if valid_paths.size() > 0:
-		navAgent.target_position = valid_paths[randi() % valid_paths.size()]
-		last_path = navAgent.target_position
-		trapped = false
-		return
-		
-	# try move around player if trapped
-	for i in range(max_attempts):
-		var escape_target = nav_comp_prop.player.global_position + Vector2(cos(deg_to_rad(i * nav_comp_prop.escape_angle_step)), sin(deg_to_rad(i * nav_comp_prop.escape_angle_step))) * nav_comp_prop.escape_radius
-		# check if we can navigate there
-		var escape_path = NavigationServer2D.map_get_path(navAgent.get_navigation_map(), character.global_position, escape_target, 0)
-		if !is_player_on_path(escape_path, nav_comp_prop.player.global_position):
-			navAgent.target_position = escape_target
-			#print("Moving around the player to escape:", escape_target)
-			trapped = false
-			return
-
-	# if we can't find an escape,
-	#print("Still stuck! Trapped like a RAT! This is the END!")
-	trapped = true
+	super.process_move()
 
 func Update(_delta: float):
 	super.Update(_delta)

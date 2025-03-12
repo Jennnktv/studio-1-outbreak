@@ -1,11 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://bbcwnuqmi3bwj"]
+[gd_scene load_steps=9 format=3 uid="uid://cjcecgaqfymrh"]
 
-[ext_resource type="Script" path="res://scripts/Player/player.gd" id="1_psele"]
+[ext_resource type="Script" uid="uid://stq8li2iword" path="res://scripts/Player/player.gd" id="1_psele"]
 [ext_resource type="Texture2D" uid="uid://ddsursga2jwqg" path="res://assets/Player/fox_rig/Chopped_Fox.png" id="1_q2hn3"]
-[ext_resource type="Script" path="res://scripts/Common/active_value.gd" id="3_i817c"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_gpb2g"]
-radius = 8.86496
+[ext_resource type="Script" uid="uid://f0d1ns5a0r7q" path="res://scripts/Common/active_value.gd" id="3_i817c"]
 
 [sub_resource type="Animation" id="Animation_kc114"]
 length = 0.001
@@ -521,22 +518,25 @@ tracks/20/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dp82l"]
 _data = {
-"RESET": SubResource("Animation_kc114"),
-"Walk": SubResource("Animation_j1knu")
+&"RESET": SubResource("Animation_kc114"),
+&"Walk": SubResource("Animation_j1knu")
 }
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gdmuh"]
+radius = 247.0
+height = 1024.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1t5al"]
+radius = 232.0
+height = 622.0
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 position = Vector2(2.05945, -5.67462)
+motion_mode = 1
 script = ExtResource("1_psele")
 animation_speed = 4.0
 friction = 6000.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(2.54639e-13, -5.32539)
-rotation = 1.5708
-scale = Vector2(22.6739, 54.7039)
-shape = SubResource("CircleShape2D_gpb2g")
-debug_color = Color(0.501264, 0.546472, 0.54748, 0.42)
+metadata/_edit_vertical_guides_ = [-789.0, 599.0]
 
 [node name="Body2" type="Node2D" parent="."]
 rotation = 1.5708
@@ -577,7 +577,8 @@ bone_angle = -116.757
 
 [node name="LeftHaunch" type="Bone2D" parent="Body2/Fox/Neck/Body"]
 position = Vector2(-132, 103)
-rotation = 3.79722
+rotation = -2.48597
+scale = Vector2(1, 1)
 rest = Transform2D(1, 0, 0, 1, -132, 103)
 auto_calculate_length_and_angle = false
 length = 170.0
@@ -696,3 +697,16 @@ speed_scale = 2.0
 
 [node name="ActiveValueMoving" type="Node" parent="."]
 script = ExtResource("3_i817c")
+max_value = 1.0
+lerp_weight = 0.3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-291.059, -0.32538)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_gdmuh")
+debug_color = Color(0.503755, 0.547033, 0.126013, 0.654902)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(364.941, 5.67462)
+shape = SubResource("CapsuleShape2D_1t5al")
+debug_color = Color(0.503755, 0.547033, 0.126013, 0.654902)
