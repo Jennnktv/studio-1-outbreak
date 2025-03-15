@@ -25,7 +25,7 @@ func _process(_delta: float) -> void:
 
 func on_sanity_depleting() -> void:
 	sanity_bar.value = SanityController.instance.sanity_value.current_value * 100
-	print(SanityController.instance.sanity_value.current_value, SanityController.instance.current_psychological_effect())
+	#print(SanityController.instance.sanity_value.current_value, SanityController.instance.current_psychological_effect())
 
 func on_stim_collected() -> void:
 	SanityController.instance.apply_stimulant()

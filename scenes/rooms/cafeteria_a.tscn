@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=4 uid="uid://cnfcc2navqa24"]
 
-[ext_resource type="Script" uid="uid://cwctddw08he1a" path="res://scenes/rooms/scripts/cafeteria_a.gd" id="1_kmnar"]
+[ext_resource type="Script" uid="uid://dl1gdanksjjj4" path="res://scenes/rooms/scripts/cafeteria_a.gd" id="1_kmnar"]
 [ext_resource type="TileSet" uid="uid://bcvsbrkf3l66i" path="res://assets/tile_sets/new_tile_set.tres" id="2_m056j"]
 
 [node name="cafeteria_a" type="Node2D"]
