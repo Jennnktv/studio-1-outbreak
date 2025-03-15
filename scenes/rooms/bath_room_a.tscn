@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=4 uid="uid://d0re38b1visqc"]
 
-[ext_resource type="Script" uid="uid://c47biyiog313m" path="res://scenes/rooms/scripts/bath_room_a.gd" id="1_8kjo8"]
+[ext_resource type="Script" uid="uid://co515yo8g2sc6" path="res://scenes/rooms/scripts/bath_room_a.gd" id="1_8kjo8"]
 [ext_resource type="TileSet" uid="uid://bcvsbrkf3l66i" path="res://assets/tile_sets/new_tile_set.tres" id="2_exgyb"]
 
 [node name="bath_room_A" type="Node2D"]

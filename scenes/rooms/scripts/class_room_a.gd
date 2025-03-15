@@ -15,8 +15,6 @@ func _ready() -> void:
 	
 	call_deferred("gen_corridors")
 
-
-
 func _on_visible_on_screen_enabler_2d_screen_entered() -> void:
 	get_node("Nodes").show()
 

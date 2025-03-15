@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=4 uid="uid://b5csrl7sg472h"]
 
-[ext_resource type="Script" uid="uid://bk1px42016ojl" path="res://scenes/rooms/scripts/class_room_a.gd" id="1_7reg2"]
+[ext_resource type="Script" uid="uid://d3lsbe1hacf2l" path="res://scenes/rooms/scripts/class_room_a.gd" id="1_7reg2"]
 [ext_resource type="TileSet" uid="uid://bcvsbrkf3l66i" path="res://assets/tile_sets/new_tile_set.tres" id="2_ubdgh"]
 [ext_resource type="Texture2D" uid="uid://dnoxsyn8lig16" path="res://scenes/rooms/room_object_assets/desk_1_test.png" id="3_5jgtf"]
 [ext_resource type="Texture2D" uid="uid://bndk4hpny7mr7" path="res://scenes/rooms/room_object_assets/chair_1_test.png" id="4_w6gy0"]
