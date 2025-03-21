@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b4wo8ocoo01cl"]
 
-[ext_resource type="Script" uid="uid://g1lyb4c543qo" path="res://scripts/GameState/game_end_ui.gd" id="1_d2rdt"]
+[ext_resource type="Script" uid="uid://bwhq0y5d0po61" path="res://scripts/GameState/game_end_ui.gd" id="1_d2rdt"]
 
 [node name="end_screen" type="Control"]
 layout_mode = 3

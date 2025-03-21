@@ -6,3 +6,4 @@ extends Node
 @warning_ignore("unused_signal") signal camera_zoom_change(value:float)
 
 @warning_ignore("unused_signal") signal game_over
+@warning_ignore("unused_signal") signal game_over_score_reset # NOTE
