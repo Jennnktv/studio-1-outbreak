@@ -26,6 +26,11 @@ func _process(_delta: float) -> void:
 func on_sanity_depleting() -> void:
 	sanity_bar.value = SanityController.instance.sanity_value.current_value * 100
 	#print(SanityController.instance.sanity_value.current_value, SanityController.instance.current_psychological_effect())
+	
+	#NOTE Game Over for you, donno where macros wanted this at so update if need be.
+	if sanity_bar.value <= 0:
+		print("GameOver")
+		SignalBus.game_over.emit()
 
 func on_stim_collected() -> void:
 	SanityController.instance.apply_stimulant()

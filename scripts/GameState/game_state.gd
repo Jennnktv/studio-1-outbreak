@@ -19,7 +19,9 @@ func _on_game_over() -> void:
 	player.set_physics_process(false)
 	$CanvasLayer/Lighting._update_light_radius(0.0)
 	
+	SignalBus.game_over_score_reset.emit()
 	# var game_end_ui = GAME_END_UI.instantiate() 
 	# canvas_layer.add_child(game_end_ui)
 	
 	get_tree().change_scene_to_file("res://scenes/game_end_UI.tscn")
+	

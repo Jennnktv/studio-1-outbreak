@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://ca7rnbvc8y7e1" path="res://scripts/GameState/game_state.gd" id="1_3sq14"]
 [ext_resource type="Script" uid="uid://c8lo8iirqo7d5" path="res://scenes/rooms/scripts/map_gen.gd" id="1_8lgxu"]
 [ext_resource type="TileSet" uid="uid://c7xnbwnwwuua2" path="res://assets/tile_sets/tile_set.tres" id="2_adj8j"]
-[ext_resource type="Script" path="res://scripts/sanity/sanity_controller.gd" id="2_dinhu"]
+[ext_resource type="Script" uid="uid://f1h5138hr4ac" path="res://scripts/sanity/sanity_controller.gd" id="2_dinhu"]
 [ext_resource type="Script" uid="uid://nhkkg3vane8l" path="res://scripts/Common/active_value.gd" id="3_kvuet"]
 [ext_resource type="PackedScene" uid="uid://bhp14ns7j14ak" path="res://scenes/Fox.tscn" id="3_of7sw"]
 [ext_resource type="Resource" uid="uid://dysnm1uj1dmt0" path="res://scripts/sanity/resources/easy_sanity_config.tres" id="3_trtic"]
