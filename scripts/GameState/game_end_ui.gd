@@ -1,13 +1,23 @@
 extends Control
 
-@onready var score: Label = %Score
+@onready var retry_button: Button = $AspectRatioContainer/CenterContainer/Panel/VBoxContainer/RetryButton
+@onready var score_label: Label = $AspectRatioContainer/CenterContainer/Panel/VBoxContainer/ScoreLabel
+@onready var time_survived_label: Label = $AspectRatioContainer/CenterContainer/Panel/VBoxContainer/TimeSurvivedLabel
+
+var ui_updated = false
 
 func _ready() -> void:
-	await get_tree().create_timer(2).timeout
-	get_tree().change_scene_to_file("res://scenes/game.tscn")
+	time_survived_label.text = "Time Survived: 00:00"
+	score_label.text = "Score: 0"
 	
-#func _set_score() -> void:
-	#score.text = str(Score.get_total_score())
+	retry_button.pressed.connect(_on_retry_pressed)
 
-#func _on_button_pressed() -> void:
-	#get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+func show_game_over(time_survived: int, score: int) -> void:		
+	var minutes = int(time_survived / 60)
+	var seconds = time_survived % 60
+
+	time_survived_label.text = "Time Survived: %02d:%02d" % [minutes, seconds]
+	score_label.text = "Score: %02d" % [score]
+	
+func _on_retry_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/game.tscn")
