@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="SanityConfiguration" load_steps=7 format=3 uid="uid://dysnm1uj1dmt0"]
 
-[ext_resource type="Script" path="res://scripts/sanity/gameplay_cue_points_res.gd" id="1_7fm7t"]
-[ext_resource type="Script" path="res://scripts/sanity/psychological_cue_point_res.gd" id="2_iauw5"]
-[ext_resource type="Script" path="res://scripts/sanity/sanity_configuration_res.gd" id="3_suy86"]
+[ext_resource type="Script" uid="uid://7w6mv7jec72u" path="res://scripts/sanity/gameplay_cue_points_res.gd" id="1_7fm7t"]
+[ext_resource type="Script" uid="uid://c7i5l0v4llk6o" path="res://scripts/sanity/psychological_cue_point_res.gd" id="2_iauw5"]
+[ext_resource type="Script" uid="uid://7dbjvvsjfx4k" path="res://scripts/sanity/sanity_configuration_res.gd" id="3_suy86"]
 
 [sub_resource type="Resource" id="Resource_iauw5"]
 script = ExtResource("1_7fm7t")

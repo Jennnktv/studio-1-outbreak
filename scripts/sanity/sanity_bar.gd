@@ -2,6 +2,8 @@ extends Control
 
 @onready var sanity_bar: ProgressBar = $MarginContainer/VBoxContainer/ProgressBar
 @onready var eye_sprite: AnimatedSprite2D = $MarginContainer/AnimatedSprite2D
+var game_over_triggered = false
+
 
 # Define ranges and corresponding frames [including min, excluding max]
 var sanity_frames = [
@@ -28,9 +30,10 @@ func on_sanity_depleting() -> void:
 	#print(SanityController.instance.sanity_value.current_value, SanityController.instance.current_psychological_effect())
 	
 	#NOTE Game Over for you, donno where macros wanted this at so update if need be.
-	if sanity_bar.value <= 0:
+	if sanity_bar.value <= 0 and not game_over_triggered:
 		print("GameOver")
 		SignalBus.game_over.emit()
+		game_over_triggered = true
 
 func on_stim_collected() -> void:
 	SanityController.instance.apply_stimulant()
