@@ -18,6 +18,7 @@ class_name base_room
 @onready var map_gen: Node2D
 @onready var rooms_container: Node2D
 @onready var tilemap := $Nodes/floor as TileMapLayer
+@onready var tilemap_wall := $Nodes/walls as TileMapLayer
 
 @onready var room_center: Vector2
 @onready var tile_size := 128
@@ -232,6 +233,70 @@ func gen_corridors():
 	
 	if map_gen.room_to_edit == tilemap:
 		cut_out_gym_other_room_corridor()
+	
+	
+	# Now lets remove double walls
+	if self is class_room_a:
+		var top_check = tilemap.get_cell_atlas_coords(Vector2i(width / 2, -1))
+		var left_check = tilemap.get_cell_atlas_coords(Vector2i(-1, height / 2))
+		#print("This is a classroom: ", self, " do a top check ", top_check)
+		if top_check == Vector2i(-1,-1):
+			for x in 28:
+				if x == 0:
+					tilemap_wall.set_cell(Vector2i(x, 0), 1, Vector2i(0, 1))
+				elif x == 27:
+					tilemap_wall.set_cell(Vector2i(x, 0), 1, Vector2i(0, 1))
+				else:
+					tilemap_wall.set_cell(Vector2i(x, 0), 0, Vector2i(-1, -1))
+					tilemap.set_cell(Vector2i(x, 0), 0, Vector2i(0, 0))
+			for x in range(34, 61):
+				if x == 34:
+					tilemap_wall.set_cell(Vector2i(x, 0), 1, Vector2i(0, 1))
+				elif x == 60:
+					tilemap_wall.set_cell(Vector2i(x, 0), 1, Vector2i(0, 1))
+				else:
+					tilemap_wall.set_cell(Vector2i(x, 0), 0, Vector2i(-1, -1))
+					tilemap.set_cell(Vector2i(x, 0), 0, Vector2i(0, 0))
+		if left_check == Vector2i(-1,-1):
+			for y in range(0, height):
+				if  y == height:
+					pass
+				else:
+					tilemap_wall.set_cell(Vector2i(0, y), 1, Vector2i(-1, -1))
+					tilemap.set_cell(Vector2i(0, y), 0, Vector2i(0, 0))
+			if top_check != Vector2i(-1,-1):
+				tilemap_wall.set_cell(Vector2i(0, 0), 1, Vector2i(1, 2))
+			tilemap_wall.set_cell(Vector2i(0, height), 1, Vector2i(1, 2))
+	else:
+		# now check other room types
+		var top_check = tilemap.get_cell_atlas_coords(Vector2i(width / 2, -1))
+		var left_check = tilemap.get_cell_atlas_coords(Vector2i(-1, height / 2))
+		#print("This is a something else: ", self, " do a top check ", top_check)
+		if top_check == Vector2i(-1, -1):
+			for x in range(0, width + 1):
+				tilemap_wall.set_cell(Vector2i(x, 0), 0, Vector2i(0, 0))
+				if x == width:
+					tilemap_wall.set_cell(Vector2i(x, 0), 1, Vector2i(0, 1))
+				
+			if self is bath_room_a: # if bathroom we need to close the gap on the stalls
+				print("This is a bathroom: ", self, " do a top check ", top_check)
+				tilemap_wall.set_cell(Vector2i(34, 0), 1, Vector2i(0, 1))
+				tilemap_wall.set_cell(Vector2i(47, 0), 1, Vector2i(0, 1))
+				tilemap_wall.set_cell(Vector2i(54, 0), 1, Vector2i(0, 1))
+				#tilemap.set_cell(Vector2i(60, 0), 1, Vector2i(-1, -1))
+				tilemap_wall.set_cell(Vector2i(60, 0), 1, Vector2i(0, 0))
+			
+			if left_check != Vector2i(-1,-1):
+				tilemap_wall.set_cell(Vector2i(0, 0), 1, Vector2i(0, 1))
+
+		if left_check == Vector2i(-1, -1):
+			for y in range(0, height + 1):
+				tilemap_wall.set_cell(Vector2i(0, y), 0, Vector2i(0, 0))
+				if y == height:
+					tilemap_wall.set_cell(Vector2i(0, y), 1, Vector2i(1, 2))
+			if top_check != Vector2i(-1,-1):
+				tilemap_wall.set_cell(Vector2i(0, 0), 1, Vector2i(1, 2))
+
 
 func check_for_room(dir: Vector2) -> bool:
 	# calculate the check position
