@@ -1,8 +1,6 @@
-# Reverse Horror Game Project
+# Absent 
 
-A Godot project for a reverse horror game where you play as an infected entity struggling to balance infection and scavenging for stims. The team was assembled on reddit with the intention to submit entries to the below game jams:
- - https://itch.io/jam/reverse-horror
- - https://itch.io/jam/the-outbreak-jam
+A Godot project for a reverse horror game where you play as an infected entity struggling to balance infection and scavenging for stims.
 
 The rough GDD can be found here:  https://chatgpt.com/canvas/shared/67a6aa8b17e08191add3ba54ae35439e
 
