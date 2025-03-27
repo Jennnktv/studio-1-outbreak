@@ -1,4 +1,4 @@
-class_name HumanController extends Node
+class_name HumanController extends CharacterBody2D
 
 @export var state_machine: StateMachine
 @export var configuration: HumanConfigurationResource
@@ -19,3 +19,8 @@ func _ready():
 		sensors.add_child(raycast)
 		raycasts.append(raycast)
 		
+func get_current_state() -> StateNode:
+	return state_machine.get_current_state()
+
+func is_current_state_panic() -> bool:
+	return get_current_state() is HumanStatePanic

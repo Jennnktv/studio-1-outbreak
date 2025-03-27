@@ -18,7 +18,6 @@ func physics_update(_delta: float):
 	navigate(configuration.running_speed)
 	if is_player_on_sight():
 		update_navigator_target_position()
-	
 
 func _on_navigation_finished():
 	if is_safe_place(body.global_position):

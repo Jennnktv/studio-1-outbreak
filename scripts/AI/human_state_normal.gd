@@ -18,7 +18,7 @@ func update(_delta: float):
 
 func physics_update(_delta: float):
 	navigate(configuration.walking_speed)
-	if is_player_on_sight():
+	if is_player_on_sight() or is_human_panic_on_sight():
 		transition_to_panic()
 
 func _on_navigation_finished():

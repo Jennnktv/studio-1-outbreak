@@ -34,3 +34,18 @@ func get_raycast_collider_from_group(group: String) -> Array[Node2D]:
 func is_player_on_sight() -> bool:
 	var colliders: Array[Node2D] = get_raycast_collider_from_group("player")
 	return colliders.size() > 0
+
+func is_human_panic_on_sight() -> bool:
+	var colliders: Array[Node2D] = get_raycast_collider_from_group("human")
+	for collider in colliders:
+		var human = collider as HumanController
+		if human.is_current_state_panic():
+			return true
+	return colliders.size() > 0
+
+func get_stims_on_sight() -> Array[Node2D]:
+	var colliders: Array[Node2D] = get_raycast_collider_from_group("stims")
+	return colliders
+
+func is_stims_on_sight() -> bool:
+	return get_stims_on_sight().size() > 0

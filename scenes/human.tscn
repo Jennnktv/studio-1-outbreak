@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dl2htlgbq4prd"]
+[gd_scene load_steps=23 format=3 uid="uid://dl2htlgbq4prd"]
 
 [ext_resource type="Script" uid="uid://b7xpvxt83lnxe" path="res://scripts/AI/human_controller.gd" id="1_mayv3"]
 [ext_resource type="Script" uid="uid://b70560imxobwb" path="res://scripts/StateMachine/state_machine.gd" id="2_denma"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://dagtyf4ewgnlr" path="res://scripts/AI/human_state_normal.gd" id="3_c7jhf"]
 [ext_resource type="Resource" uid="uid://cv2oixp83m6lc" path="res://scripts/AI/resources/default_human_configuration.tres" id="5_denma"]
 [ext_resource type="Script" uid="uid://b5upuf1wbpksj" path="res://scripts/AI/human_state_panic.gd" id="6_c7jhf"]
+[ext_resource type="Script" uid="uid://drrdjtd1kcs8k" path="res://scripts/AI/human_state_infected.gd" id="7_u0vvy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7v2o5"]
 radius = 28.0049
@@ -162,5 +163,14 @@ navigator = NodePath("../../NavigationAgent")
 sprite = NodePath("../../Sprite")
 sensors = NodePath("../../Sensors")
 metadata/_custom_type_script = "uid://b5upuf1wbpksj"
+
+[node name="Infected" type="Node" parent="StateMachine" node_paths=PackedStringArray("body", "navigator", "sprite", "sensors")]
+script = ExtResource("7_u0vvy")
+configuration = ExtResource("5_denma")
+body = NodePath("../..")
+navigator = NodePath("../../NavigationAgent")
+sprite = NodePath("../../Sprite")
+sensors = NodePath("../../Sensors")
+metadata/_custom_type_script = "uid://drrdjtd1kcs8k"
 
 [node name="Sensors" type="Node2D" parent="."]

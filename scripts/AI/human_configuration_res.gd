@@ -6,3 +6,4 @@ const METER = 32.0
 @export var walking_speed: float = METER * GOLDEN_RATIO * 2
 @export var running_speed: float = METER * GOLDEN_RATIO * 8
 @export var view_distance: float = METER * 10
+@export var stim_radius: float = METER * 4

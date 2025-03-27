@@ -7,7 +7,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_2fkdh"]
 radius = 23.0
 
-[node name="Room" type="Node2D"]
+[node name="Room" type="Node2D" groups=["stims"]]
 script = ExtResource("1_ckr5s")
 
 [node name="TML01" type="TileMapLayer" parent="."]
@@ -21,16 +21,17 @@ position = Vector2(439, 189)
 shape = SubResource("CircleShape2D_2fkdh")
 debug_color = Color(0.962102, 1.05888e-06, 0.506523, 0.42)
 
+[node name="StaticBody2D2" type="StaticBody2D" parent="." groups=["stims"]]
+position = Vector2(938, 720)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+shape = SubResource("CircleShape2D_2fkdh")
+debug_color = Color(0, 0.360442, 0.592708, 0.419608)
+
 [node name="Human" parent="." instance=ExtResource("1_1clpj")]
-position = Vector2(350, 606)
+position = Vector2(46, 514)
 
 [node name="Normal" parent="Human/StateMachine" index="0" node_paths=PackedStringArray("spots")]
-spots = [NodePath("../../../Marker2D"), NodePath("../../../Marker2D2"), NodePath("../../../Marker2D3"), NodePath("../../../Marker2D4"), NodePath("../../../Marker2D5"), NodePath("../../../Marker2D6")]
-
-[node name="Human2" parent="." instance=ExtResource("1_1clpj")]
-position = Vector2(1009, 383)
-
-[node name="Normal" parent="Human2/StateMachine" index="0" node_paths=PackedStringArray("spots")]
 spots = [NodePath("../../../Marker2D"), NodePath("../../../Marker2D2"), NodePath("../../../Marker2D3"), NodePath("../../../Marker2D4"), NodePath("../../../Marker2D5"), NodePath("../../../Marker2D6")]
 
 [node name="Marker2D" type="Marker2D" parent="."]
@@ -52,4 +53,3 @@ position = Vector2(508, 673)
 position = Vector2(93, 673)
 
 [editable path="Human"]
-[editable path="Human2"]
