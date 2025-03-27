@@ -1,11 +1,15 @@
-[gd_scene load_steps=18 format=3 uid="uid://dl2htlgbq4prd"]
+[gd_scene load_steps=22 format=3 uid="uid://dl2htlgbq4prd"]
 
+[ext_resource type="Script" uid="uid://b7xpvxt83lnxe" path="res://scripts/AI/human_controller.gd" id="1_mayv3"]
+[ext_resource type="Script" uid="uid://b70560imxobwb" path="res://scripts/StateMachine/state_machine.gd" id="2_denma"]
 [ext_resource type="Texture2D" uid="uid://cda7ltmsjrbrx" path="res://assets/Player/Robot_Walk_Cycle.png" id="2_g4skg"]
-[ext_resource type="PackedScene" uid="uid://4k5oqrecloo4" path="res://scenes/NavigationComponent.tscn" id="2_yvg70"]
+[ext_resource type="Script" uid="uid://dagtyf4ewgnlr" path="res://scripts/AI/human_state_normal.gd" id="3_c7jhf"]
+[ext_resource type="Resource" uid="uid://cv2oixp83m6lc" path="res://scripts/AI/resources/default_human_configuration.tres" id="5_denma"]
+[ext_resource type="Script" uid="uid://b5upuf1wbpksj" path="res://scripts/AI/human_state_panic.gd" id="6_c7jhf"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7v2o5"]
-radius = 53.0
-height = 152.0
+radius = 28.0049
+height = 124.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2lecy"]
 atlas = ExtResource("2_g4skg")
@@ -111,20 +115,52 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="Human" type="CharacterBody2D" groups=["human"]]
-rotation = -1.5708
+[node name="Human" type="CharacterBody2D" node_paths=PackedStringArray("state_machine") groups=["human"]]
+collision_layer = 3
+collision_mask = 3
 motion_mode = 1
+script = ExtResource("1_mayv3")
+state_machine = NodePath("StateMachine")
+configuration = ExtResource("5_denma")
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 process_mode = 4
-rotation = 1.5708
+rotation = 0.00528094
 shape = SubResource("CapsuleShape2D_7v2o5")
 disabled = true
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
+rotation = -1.57079
 scale = Vector2(0.125, 0.125)
 sprite_frames = SubResource("SpriteFrames_o4j5q")
 animation = &"walk"
 frame_progress = 0.124507
 
-[node name="NavComponent" parent="." instance=ExtResource("2_yvg70")]
+[node name="NavigationAgent" type="NavigationAgent2D" parent="."]
+path_postprocessing = 1
+debug_enabled = true
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_denma")
+initial_state = NodePath("Normal")
+metadata/_custom_type_script = "uid://b70560imxobwb"
+
+[node name="Normal" type="Node" parent="StateMachine" node_paths=PackedStringArray("body", "navigator", "sprite", "sensors")]
+script = ExtResource("3_c7jhf")
+configuration = ExtResource("5_denma")
+body = NodePath("../..")
+navigator = NodePath("../../NavigationAgent")
+sprite = NodePath("../../Sprite")
+sensors = NodePath("../../Sensors")
+metadata/_custom_type_script = "uid://dagtyf4ewgnlr"
+
+[node name="Panic" type="Node" parent="StateMachine" node_paths=PackedStringArray("body", "navigator", "sprite", "sensors")]
+script = ExtResource("6_c7jhf")
+configuration = ExtResource("5_denma")
+body = NodePath("../..")
+navigator = NodePath("../../NavigationAgent")
+sprite = NodePath("../../Sprite")
+sensors = NodePath("../../Sensors")
+metadata/_custom_type_script = "uid://b5upuf1wbpksj"
+
+[node name="Sensors" type="Node2D" parent="."]
