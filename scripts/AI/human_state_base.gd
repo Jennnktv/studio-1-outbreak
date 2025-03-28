@@ -5,6 +5,7 @@ class_name HumanStateBase extends StateNode
 @export var navigator: NavigationAgent2D
 @export var sprite: AnimatedSprite2D
 @export var sensors: Node2D
+@export var hitbox: Area2D
 
 func navigate(speed: float) -> void:
 	body.velocity = (navigator.get_next_path_position() - body.global_position).normalized() * speed
@@ -16,6 +17,9 @@ func transition_to_normal():
 
 func transition_to_panic():
 	state_machine.change_state("Panic")
+
+func transition_to_infected():
+	state_machine.change_state("Infected")
 
 func get_raycasts() -> Array[RayCast2D]:
 	var raycasts: Array[RayCast2D] = []
@@ -49,3 +53,4 @@ func get_stims_on_sight() -> Array[Node2D]:
 
 func is_stims_on_sight() -> bool:
 	return get_stims_on_sight().size() > 0
+	

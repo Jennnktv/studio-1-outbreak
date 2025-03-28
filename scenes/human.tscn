@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dl2htlgbq4prd"]
+[gd_scene load_steps=24 format=3 uid="uid://dl2htlgbq4prd"]
 
 [ext_resource type="Script" uid="uid://b7xpvxt83lnxe" path="res://scripts/AI/human_controller.gd" id="1_mayv3"]
 [ext_resource type="Script" uid="uid://b70560imxobwb" path="res://scripts/StateMachine/state_machine.gd" id="2_denma"]
@@ -116,6 +116,9 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_u0vvy"]
+radius = 33.1361
+
 [node name="Human" type="CharacterBody2D" node_paths=PackedStringArray("state_machine") groups=["human"]]
 collision_layer = 3
 collision_mask = 3
@@ -146,31 +149,39 @@ script = ExtResource("2_denma")
 initial_state = NodePath("Normal")
 metadata/_custom_type_script = "uid://b70560imxobwb"
 
-[node name="Normal" type="Node" parent="StateMachine" node_paths=PackedStringArray("body", "navigator", "sprite", "sensors")]
+[node name="Normal" type="Node" parent="StateMachine" node_paths=PackedStringArray("body", "navigator", "sprite", "sensors", "hitbox")]
 script = ExtResource("3_c7jhf")
 configuration = ExtResource("5_denma")
 body = NodePath("../..")
 navigator = NodePath("../../NavigationAgent")
 sprite = NodePath("../../Sprite")
 sensors = NodePath("../../Sensors")
+hitbox = NodePath("../../Hitbox")
 metadata/_custom_type_script = "uid://dagtyf4ewgnlr"
 
-[node name="Panic" type="Node" parent="StateMachine" node_paths=PackedStringArray("body", "navigator", "sprite", "sensors")]
+[node name="Panic" type="Node" parent="StateMachine" node_paths=PackedStringArray("body", "navigator", "sprite", "sensors", "hitbox")]
 script = ExtResource("6_c7jhf")
 configuration = ExtResource("5_denma")
 body = NodePath("../..")
 navigator = NodePath("../../NavigationAgent")
 sprite = NodePath("../../Sprite")
 sensors = NodePath("../../Sensors")
+hitbox = NodePath("../../Hitbox")
 metadata/_custom_type_script = "uid://b5upuf1wbpksj"
 
-[node name="Infected" type="Node" parent="StateMachine" node_paths=PackedStringArray("body", "navigator", "sprite", "sensors")]
+[node name="Infected" type="Node" parent="StateMachine" node_paths=PackedStringArray("body", "navigator", "sprite", "sensors", "hitbox")]
 script = ExtResource("7_u0vvy")
 configuration = ExtResource("5_denma")
 body = NodePath("../..")
 navigator = NodePath("../../NavigationAgent")
 sprite = NodePath("../../Sprite")
 sensors = NodePath("../../Sensors")
+hitbox = NodePath("../../Hitbox")
 metadata/_custom_type_script = "uid://drrdjtd1kcs8k"
 
 [node name="Sensors" type="Node2D" parent="."]
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="Shape" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_u0vvy")

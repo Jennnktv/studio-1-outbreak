@@ -5,8 +5,8 @@ var visited_places: Array = []
 
 func enter():
 	navigator.navigation_finished.connect(_on_navigation_finished)
-	_on_navigation_finished()
 	sprite.modulate = Color(1, 1, 0)
+	_on_navigation_finished()
 	pass
 
 func exit():
@@ -39,10 +39,16 @@ func update_navigator_target_position():
 		visited_places.pop_front()
 	navigator.target_position = pick_random_place()
 
-func pick_random_place():
+func pick_random_place(count = 0):
+	# Randomly pick a place to navigate to
+	# If the place is already visited, pick another one
+	# If the count exceeds 10, return a default position
+	# This is to prevent infinite loops
+	if count > 10:
+		return Vector2.ZERO
 	var next_place = Vector2(randf_range(-1000, 1000), randf_range(-1000, 1000))
 	if is_already_visited(next_place):
-		return pick_random_place()
+		return pick_random_place(count + 1)
 	return next_place
 
 func is_already_visited(position: Vector2) -> bool:
