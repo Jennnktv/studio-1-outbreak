@@ -4,7 +4,7 @@ class_name nav_component_properties
 ###########################################
 # Properties
 ###########################################
-#E3C
+#E3C#
 
 var room_centers: Array = []
 #var tile_map: TileMapLayer
