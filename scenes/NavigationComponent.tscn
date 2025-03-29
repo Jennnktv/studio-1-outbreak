@@ -1,14 +1,15 @@
 [gd_scene load_steps=7 format=3 uid="uid://4k5oqrecloo4"]
 
-[ext_resource type="Script" uid="uid://qs1ol5puq52r" path="res://scripts/HumanAI/NavComponent/1_nav_settings/nav_component_properties.gd" id="1_f3yoc"]
-[ext_resource type="Script" uid="uid://b2kdt7vhkug6y" path="res://scripts/HumanAI/NavComponent/2_state_machine/nav_state_machine.gd" id="1_hun5f"]
-[ext_resource type="Script" uid="uid://cpi7sj5lh5opb" path="res://scripts/HumanAI/NavComponent/4_states/wander_state.gd" id="3_oetll"]
+[ext_resource type="Script" uid="uid://lxjla8u6ufve" path="res://scripts/HumanAI/NavComponent/1_nav_settings/nav_component_properties.gd" id="1_f3yoc"]
+[ext_resource type="Script" uid="uid://oi04vp5ad3v4" path="res://scripts/HumanAI/NavComponent/2_state_machine/nav_state_machine.gd" id="1_hun5f"]
+[ext_resource type="Script" uid="uid://dl480pd84ij67" path="res://scripts/HumanAI/NavComponent/4_states/wander_state.gd" id="3_oetll"]
 [ext_resource type="Script" uid="uid://baipla6p041dv" path="res://scripts/HumanAI/NavComponent/4_states/infected_state.gd" id="4_8rj6o"]
-[ext_resource type="Script" uid="uid://de6pc22a7i2c4" path="res://scripts/HumanAI/NavComponent/4_states/flee_state.gd" id="5_oy3v8"]
+[ext_resource type="Script" uid="uid://cu4258e7q35qe" path="res://scripts/HumanAI/NavComponent/4_states/flee_state.gd" id="5_oy3v8"]
 [ext_resource type="Script" uid="uid://cq287rxr1jsui" path="res://scripts/HumanAI/NavComponent/4_states/search_state.gd" id="6_iqg41"]
 
 [node name="NavComponent" type="Node2D"]
 script = ExtResource("1_f3yoc")
+is_debug = true
 infected_transition_time = 1.0
 infected_speed = 225.0
 flee_speed = 375.0
@@ -17,8 +18,6 @@ flee_distance_max = 1500.0
 escape_radius = 125.0
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-path_desired_distance = 35.71
-path_max_distance = 10.0
 path_postprocessing = 1
 simplify_epsilon = 10.0
 max_speed = 1000.0
