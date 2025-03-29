@@ -1,13 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://dv3bdkmetykja"]
+[gd_scene load_steps=8 format=3 uid="uid://dv3bdkmetykja"]
 
 [ext_resource type="Script" uid="uid://clbmbq1la24pb" path="res://scripts/MainMenu/main_menu.gd" id="1_3fvjd"]
 [ext_resource type="Texture2D" uid="uid://dlh7cra20budt" path="res://assets/MainMenu/main_menu_background.png" id="2_exr4e"]
 [ext_resource type="StyleBox" uid="uid://dlqm6afjwvkho" path="res://assets/MainMenu/Button.tres" id="3_o4735"]
 [ext_resource type="FontFile" uid="uid://haqfj7h78j8s" path="res://assets/HUD/OXANIUM.ttf" id="3_wnfeu"]
 [ext_resource type="AudioStream" uid="uid://bgxp7gtf12m7d" path="res://assets/sfx/2 Mind's Eye Loop3.wav" id="4_fdnjj"]
-[ext_resource type="Texture2D" uid="uid://bgrcg41e1ljvt" path="res://assets/HUD/HUD_BG.png" id="6_tbmy8"]
-[ext_resource type="LabelSettings" uid="uid://drdgpw2nc5klf" path="res://assets/HUD/HUD_font_settings.tres" id="7_jk1qb"]
-[ext_resource type="Script" uid="uid://cv8sm7nlyvjrl" path="res://scripts/Score/wire_score_controller.gd" id="8_5dd4i"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ajv18"]
 bg_color = Color(0, 0, 0, 0.701961)
@@ -137,39 +134,6 @@ text = "ABOUT"
 stream = ExtResource("4_fdnjj")
 volume_db = 6.0
 autoplay = true
-
-[node name="SCORE" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -384.0
-offset_top = -67.0
-offset_right = -20.0
-offset_bottom = -8.0
-grow_horizontal = 0
-grow_vertical = 0
-texture = ExtResource("6_tbmy8")
-
-[node name="TOTAL_SCORE" type="Label" parent="SCORE"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "HIGH SCORE: %s"
-label_settings = ExtResource("7_jk1qb")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WIRE_SCORE" type="Node" parent="SCORE/TOTAL_SCORE"]
-script = ExtResource("8_5dd4i")
-use_high_score = true
-show_total_score = true
-wait_for_score_loading = true
 
 [connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="VBoxContainer/About" to="." method="_on_about_pressed"]
