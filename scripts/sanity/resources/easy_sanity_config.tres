@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="SanityConfiguration" load_steps=7 format=3 uid="uid://dysnm1uj1dmt0"]
 
-[ext_resource type="Script" uid="uid://7w6mv7jec72u" path="res://scripts/Sanity/gameplay_cue_points_res.gd" id="1_7fm7t"]
-[ext_resource type="Script" uid="uid://c7i5l0v4llk6o" path="res://scripts/Sanity/psychological_cue_point_res.gd" id="2_iauw5"]
-[ext_resource type="Script" uid="uid://7dbjvvsjfx4k" path="res://scripts/Sanity/sanity_configuration_res.gd" id="3_suy86"]
+[ext_resource type="Script" path="res://scripts/sanity/gameplay_cue_points_res.gd" id="1_7fm7t"]
+[ext_resource type="Script" path="res://scripts/sanity/psychological_cue_point_res.gd" id="2_iauw5"]
+[ext_resource type="Script" path="res://scripts/sanity/sanity_configuration_res.gd" id="3_suy86"]
 
 [sub_resource type="Resource" id="Resource_iauw5"]
 script = ExtResource("1_7fm7t")
@@ -24,9 +24,10 @@ metadata/_custom_type_script = "uid://c7i5l0v4llk6o"
 
 [resource]
 script = ExtResource("3_suy86")
-sanity_deplete_rate = 0.02
+sanity_deplete_rate = 0.05
 sanity_pristine_cooldown = 2.0
 fury_cooldown = 5.0
 stimulant_recharge_rate = 0.2
 psychological_cue_points = Array[ExtResource("2_iauw5")]([SubResource("Resource_7fm7t"), SubResource("Resource_suy86")])
 gameplay_cue_points = Array[ExtResource("1_7fm7t")]([SubResource("Resource_iauw5")])
+metadata/_custom_type_script = "uid://7dbjvvsjfx4k"

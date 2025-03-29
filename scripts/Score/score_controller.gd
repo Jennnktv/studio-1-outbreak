@@ -50,12 +50,6 @@ var _is_loaded = false
 #endregion
 
 func _ready() -> void:
-	SignalBus.game_over_score_reset.connect(on_score_reset) # NOTE
-	_load()
-
-#NOTE score reset, donno where macros wanted this at so update if need be.
-func on_score_reset() -> void:
-	print("Reset Score")
 	_load()
 
 func push(score_type: ScoreType, score: int) -> void:

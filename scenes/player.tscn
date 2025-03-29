@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://d3auo11nssp7i"]
 
-[ext_resource type="Script" uid="uid://bxuser3b1vw1h" path="res://scripts/Player/player.gd" id="1_er64k"]
+[ext_resource type="Script" uid="uid://stq8li2iword" path="res://scripts/Player/player.gd" id="1_er64k"]
 [ext_resource type="Texture2D" uid="uid://cda7ltmsjrbrx" path="res://assets/Player/Robot_Walk_Cycle.png" id="2_jmrbf"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7v2o5"]

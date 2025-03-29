@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://clsmtvvu3tgia"]
 
-[ext_resource type="Script" uid="uid://bh6kperg4hpie" path="res://scripts/Sanity/sanity_bar.gd" id="1_lkndy"]
+[ext_resource type="Script" uid="uid://bh6kperg4hpie" path="res://scripts/sanity/sanity_bar.gd" id="1_lkndy"]
 [ext_resource type="Texture2D" uid="uid://b0f2rcnmnwcyp" path="res://assets/Sanity/Sanity_Sprite1.png" id="2_8fcjq"]
 [ext_resource type="Texture2D" uid="uid://cbtg5ipme3abc" path="res://assets/Sanity/Sanity_Sprite2.png" id="3_6vglw"]
 [ext_resource type="Texture2D" uid="uid://cy2y8vgebymw8" path="res://assets/Sanity/Sanity_Sprite3.png" id="4_h2usm"]
