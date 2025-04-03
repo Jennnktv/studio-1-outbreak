@@ -22,6 +22,7 @@ func _on_game_over() -> void:
 	player.set_physics_process(false)
 	$CanvasLayer/Lighting._update_light_radius(0.0)
 	
+	var score = Score.get_total_score()
 	var high_score = Score.get_total_high_score()
 	var time_survived = Time.get_unix_time_from_system() - start_time
 	
@@ -29,4 +30,4 @@ func _on_game_over() -> void:
 	
 	var game_over_ui = GAME_END_UI.instantiate()
 	canvas_layer.add_child(game_over_ui)
-	game_over_ui.show_game_over(time_survived, high_score)
+	game_over_ui.show_game_over(time_survived, score, high_score)
